@@ -1,0 +1,60 @@
+import { client } from '$lib/sanity';
+import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
+
+// Define a reusable type for linked categories and tags
+interface ReferenceItem {
+	title: string;
+	slug: {
+		current: string;
+	};
+}
+
+// Update the Post interface
+export interface Post {
+	_id: string;
+	title: string;
+	date: string;
+	content: any[]; // Portable Text array
+	featuredMedia?: any;
+	sticky?: boolean;
+	categories?: ReferenceItem[];
+	tags?: ReferenceItem[];
+}
+
+export const load: PageServerLoad = async ({ params }) => {
+	const { slug } = params;
+
+	// Update the GROQ query to expand categories and tags
+	const groqQuery = `*[_type == "post" && slug.current == $slug][0]{
+    ...,
+    content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      }
+    },
+    categories[]->{
+      name,
+      slug
+    },
+    tags[]->{
+      name,
+      slug
+    },
+    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
+  }`;
+
+	const post: Post = await client.fetch(groqQuery, { slug });
+
+	console.log(post);
+
+	if (!post) {
+		error(404, 'Post not found');
+	}
+
+	return {
+		post
+	};
+};
