@@ -1,0 +1,9 @@
+@import '@fontsource-variable/bricolage-grotesque';
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-bricolage: 'Bricolage Grotesque Variable', 'sans-serif';
+}

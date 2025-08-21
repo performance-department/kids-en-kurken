@@ -16,7 +16,7 @@
 	};
 </script>
 
-<article>
+<article class="mx-auto prose max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
 	<h1>{post.title}</h1>
 	<p class="date">Published on: {new Date(post.date).toLocaleDateString()}</p>
 
