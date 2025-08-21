@@ -18,6 +18,10 @@
 
 <figure>
 	{#if value.url}
-		<img src={value.url} alt={value.alt || 'External image'} />
+		<img
+			class="my-8 h-auto w-full rounded-xl object-cover shadow-md"
+			src={value.url}
+			alt={value.alt || 'External image'}
+		/>
 	{/if}
 </figure>

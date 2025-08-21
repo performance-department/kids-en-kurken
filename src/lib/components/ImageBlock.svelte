@@ -14,6 +14,10 @@
 </script>
 
 <figure>
-	<img src={urlFor(value).width(800).auto('format').url()} alt={value.alt || 'Missing alt text'} />
+	<img
+		class="my-8 h-auto w-full rounded-xl object-cover shadow-md"
+		src={urlFor(value).width(800).auto('format').url()}
+		alt={value.alt || 'Missing alt text'}
+	/>
 	<!-- You can also add a caption if your schema supports it -->
 </figure>

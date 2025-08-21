@@ -38,7 +38,7 @@
 
 	<!-- Render Tags -->
 	{#if post.tags?.length}
-		<div class="tag-list">
+		<div>
 			<strong>Tags:</strong>
 			<ul>
 				{#each post.tags as tag}
@@ -50,7 +50,23 @@
 		</div>
 	{/if}
 
-	<div class="content">
+	<div class="mb-8">
+		<div
+			class="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
+		>
+			<span class="font-medium text-neutral-400">Ad</span>
+		</div>
+	</div>
+
+	<div>
 		<PortableText value={post.content} {components} />
+	</div>
+
+	<div class="mt-8 mb-8">
+		<div
+			class="flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
+		>
+			<span class="font-medium text-neutral-400">Ad</span>
+		</div>
 	</div>
 </article>
