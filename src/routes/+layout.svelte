@@ -128,7 +128,7 @@
 
 			<!-- Desktop Menu -->
 			<div class="hidden items-center space-x-1 lg:flex">
-				{#each menuItems as item}
+				{#each menuItems as item (item.title)}
 					{#if item.type === 'link'}
 						<a
 							href={item.href}
@@ -163,7 +163,7 @@
 									: 'w-48'}"
 							>
 								<div class="py-2">
-									{#each item.children as child}
+									{#each item.children as child (child.title)}
 										<a
 											href={child.href}
 											class="block px-4 py-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-700"
@@ -243,7 +243,7 @@
 	{#if mobileMenuOpen}
 		<div class="border-t border-neutral-200 bg-white lg:hidden">
 			<div class="space-y-2 px-4 py-4">
-				{#each menuItems as item}
+				{#each menuItems as item (item.title)}
 					{#if item.type === 'link'}
 						<a
 							href={item.href}
