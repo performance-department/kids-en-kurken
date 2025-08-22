@@ -117,3 +117,182 @@
 		</div>
 	</div>
 </article>
+
+<section class="mx-auto max-w-4xl border-t border-neutral-200 px-4 py-12 sm:px-6 lg:px-8">
+	<div class="mb-8">
+		<h3 class="mb-2 text-[2rem] leading-[1.3] font-bold text-neutral-900">Reacties (19)</h3>
+		<p class="text-[1rem] leading-[1.7] text-neutral-600">
+			Deel je ervaringen en steun andere ouders die met vergelijkbare situaties te maken hebben.
+		</p>
+	</div>
+
+	<!-- Comment Form -->
+	<div class="mb-12 rounded-2xl bg-neutral-50 p-6">
+		<h4 class="mb-4 text-[1.5rem] leading-[1.4] font-semibold text-neutral-900">
+			Reactie plaatsen
+		</h4>
+		<div class="space-y-4">
+			<div class="grid gap-4 md:grid-cols-2">
+				<input
+					type="text"
+					placeholder="Je naam"
+					class="rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
+				/>
+				<input
+					type="email"
+					placeholder="Je e-mailadres"
+					class="rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
+				/>
+			</div>
+			<textarea
+				placeholder="Deel je gedachten en ervaringen..."
+				rows="4"
+				class="w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
+			></textarea>
+			<div class="flex items-center justify-end">
+				<button
+					class="rounded-xl bg-mocha-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-mocha-600"
+				>
+					Plaatsen
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Ad Placeholder - Before Comments -->
+	<div class="mb-8">
+		<div
+			class="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
+		>
+			<span class="font-medium text-neutral-400">Ad</span>
+		</div>
+	</div>
+
+	<!-- Comments List -->
+	<div class="space-y-6">
+		<!-- Comment 1 -->
+		<div
+			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
+		>
+			<div class="flex items-start space-x-4">
+				<div
+					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
+				>
+					<span class="text-sm font-medium text-mocha-700">JD</span>
+				</div>
+				<div class="flex-1">
+					<div class="mb-2 flex items-center space-x-3">
+						<h5 class="font-semibold text-neutral-900">Jane Doe</h5>
+						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">2 uur geleden</span>
+					</div>
+					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
+						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
+						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
+						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
+					</p>
+					<div class="flex items-center space-x-4">
+						<button
+							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+							>Beantwoorden</button
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Comment 2 with Reply -->
+		<div
+			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
+		>
+			<div class="flex items-start space-x-4">
+				<div
+					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
+				>
+					<span class="text-sm font-medium text-mocha-700">JD</span>
+				</div>
+				<div class="flex-1">
+					<div class="mb-2 flex items-center space-x-3">
+						<h5 class="font-semibold text-neutral-900">Jane Doe</h5>
+						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">4 uur geleden</span>
+					</div>
+					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
+						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
+						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
+						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
+					</p>
+					<div class="mb-4 flex items-center space-x-4">
+						<button
+							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+							>Beantwoorden</button
+						>
+					</div>
+
+					<!-- Reply -->
+					<div class="ml-10 border-l-2 border-neutral-200 pl-4">
+						<div class="flex items-start space-x-4">
+							<div
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
+							>
+								<span class="text-xs font-medium text-mocha-700">JD</span>
+							</div>
+							<div class="flex-1">
+								<div class="mb-2 flex items-center space-x-3">
+									<h6 class="text-[1rem] font-semibold text-neutral-900">John Doe</h6>
+									<span class="text-[0.875rem] leading-[1.5] text-neutral-500">3 uur geleden</span>
+								</div>
+								<p class="mb-2 text-[1rem] leading-[1.7] text-neutral-700">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros
+									felis. Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio
+									eget elementum imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna
+									est, dignissim ac consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Comment 3 -->
+		<div
+			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
+		>
+			<div class="flex items-start space-x-4">
+				<div
+					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
+				>
+					<span class="text-sm font-medium text-mocha-700">JD</span>
+				</div>
+				<div class="flex-1">
+					<div class="mb-2 flex items-center space-x-3">
+						<h5 class="font-semibold text-neutral-900">John Doe</h5>
+						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">6 uur geleden</span>
+					</div>
+					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
+						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
+						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
+						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
+					</p>
+					<div class="flex items-center space-x-4">
+						<button
+							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+							>Beantwoorden</button
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Load More Comments -->
+		<div class="pt-6 text-center">
+			<button
+				class="rounded-full border-2 border-neutral-300 px-8 py-3 font-medium text-neutral-700 transition-colors hover:border-rose-300 hover:bg-neutral-50"
+			>
+				Laad meer reacties
+			</button>
+		</div>
+	</div>
+</section>
