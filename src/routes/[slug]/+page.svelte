@@ -4,6 +4,7 @@
 	import ImageBlock from '$lib/components/ImageBlock.svelte';
 	import ExternalImageBlock from '$lib/components/ExternalImageBlock.svelte';
 	import type { PortableTextComponents } from '@portabletext/svelte';
+	import { urlFor } from '$lib/sanity';
 
 	let { data }: { data: PageData } = $props();
 	const { post } = data;
@@ -17,6 +18,16 @@
 </script>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+	{#if post.featuredMedia}
+		<div class="mb-8">
+			<img
+				src={urlFor(post.featuredMedia).width(800).auto('format').url()}
+				alt="Kind met spaarpot en geld"
+				class="h-[400px] w-full rounded-2xl object-cover shadow-lg sm:h-[500px]"
+			/>
+		</div>
+	{/if}
+
 	<div class="mb-8">
 		{#if post.categories?.length}
 			<div class="mb-4 flex flex-wrap gap-2">
