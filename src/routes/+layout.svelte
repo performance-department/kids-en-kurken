@@ -44,9 +44,9 @@
 			title: 'Verhalen',
 			type: 'dropdown',
 			children: [
-				{ title: 'Alles', href: '/verhalen' },
-				{ title: 'Jane Doe', href: '/verhalen/jane-doe' },
-				{ title: 'Mijn verhaal', href: '/verhalen/mijn-verhaal' }
+				{ title: 'Alles', href: '/ouderverhalen' },
+				{ title: 'Jane Doe', href: '/jane-doe' },
+				{ title: 'Mijn verhaal', href: '/mijn-verhaal' }
 			]
 		},
 		{

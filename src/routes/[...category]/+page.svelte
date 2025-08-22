@@ -3,7 +3,9 @@
 	import { urlFor } from '$lib/sanity';
 
 	let { data }: { data: PageData } = $props();
-	const { categoryName, posts } = data;
+
+	let categoryName = $derived(data.categoryName);
+	let posts = $derived(data.posts);
 
 	function formatPermalink(dateString, slug) {
 		const date = new Date(dateString);
