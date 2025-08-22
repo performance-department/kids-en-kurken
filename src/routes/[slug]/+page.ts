@@ -26,7 +26,6 @@ export interface Post {
 export const load: PageServerLoad = async ({ params }) => {
 	const { slug } = params;
 
-	// Update the GROQ query to expand categories and tags
 	const groqQuery = `*[_type == "post" && slug.current == $slug][0]{
     ...,
     content[]{
