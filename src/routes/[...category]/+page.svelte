@@ -105,6 +105,7 @@
 								.url()}
 							alt="Spaarpot artikel"
 							class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+							style={`view-transition-name:${posts[0]._id}`}
 						/>
 					</div>
 					<div class="p-6 lg:p-8">
@@ -177,6 +178,7 @@
 									: 'https://placehold.co/400x250?text=Kids en Kurken'}
 								alt="Gezonde maaltijd"
 								class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+								style={`view-transition-name:${post._id}`}
 							/>
 						</div>
 						<div class="p-6">

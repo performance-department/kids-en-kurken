@@ -34,6 +34,7 @@
 				src={urlFor(post.featuredMedia).width(800).auto('format').url()}
 				alt="Kind met spaarpot en geld"
 				class="h-[400px] w-full rounded-2xl object-cover shadow-lg sm:h-[500px]"
+				style={`view-transition-name: ${post._id}`}
 			/>
 		</div>
 	{/if}
