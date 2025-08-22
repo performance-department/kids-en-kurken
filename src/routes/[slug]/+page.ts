@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 
 // Define a reusable type for linked categories and tags
 interface ReferenceItem {
-	title: string;
+	name: string;
 	slug: {
 		current: string;
 	};
@@ -20,6 +20,7 @@ export interface Post {
 	sticky?: boolean;
 	categories?: ReferenceItem[];
 	tags?: ReferenceItem[];
+	estimatedReadingTime: number;
 }
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -47,8 +48,6 @@ export const load: PageServerLoad = async ({ params }) => {
   }`;
 
 	const post: Post = await client.fetch(groqQuery, { slug });
-
-	console.log(post);
 
 	if (!post) {
 		error(404, 'Post not found');
