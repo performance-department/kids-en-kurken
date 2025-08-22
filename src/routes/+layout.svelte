@@ -13,9 +13,9 @@
 			title: 'Aanmelden',
 			type: 'dropdown',
 			children: [
-				{ title: 'Mijn verhaal', href: '/aanmelden/mijn-verhaal' },
-				{ title: 'Blogster', href: '/aanmelden/blogster' },
-				{ title: 'Influencer', href: '/aanmelden/influencer' }
+				{ title: 'Mijn verhaal', href: '/insturen' },
+				{ title: 'Blogster', href: '/aanmelden-blogster' },
+				{ title: 'Influencer', href: '/aanmelden-influencer' }
 			]
 		},
 		{
@@ -365,7 +365,7 @@
 	</div>
 </section>
 
-<main>
+<main class="flex-grow">
 	{@render children?.()}
 </main>
 
