@@ -23,7 +23,7 @@
 			children: [
 				{ title: 'Alles', href: '/blogs' },
 				{ title: 'Ouder', href: '/blogs/ouder' },
-				{ title: 'Expat', href: '/blogs/expat' },
+				{ title: 'Expat', href: '/blogs/expatblog' },
 				{ title: 'Deskundige', href: '/blogs/deskundige' }
 			]
 		},

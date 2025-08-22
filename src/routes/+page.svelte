@@ -12,7 +12,7 @@
 	<ul class="post-list">
 		{#each posts as post}
 			<li class="post-card">
-				<a href="/{post.slug.current}" class="post-link">
+				<a href="/2025/08/22/{post.slug.current}" class="post-link">
 					{#if post.featuredMedia?.asset}
 						<img
 							class="featured-image"
