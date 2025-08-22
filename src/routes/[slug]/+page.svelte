@@ -18,6 +18,16 @@
 </script>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+	<nav class="mb-8">
+		<ol
+			class="flex flex-wrap items-center space-x-2 gap-y-1 text-[0.875rem] leading-[1.5] text-neutral-500"
+		>
+			<li><a href="/" class="transition-colors hover:text-mocha-500">Home</a></li>
+			<li>/</li>
+			<li class="text-neutral-700">{post.title}</li>
+		</ol>
+	</nav>
+
 	{#if post.featuredMedia}
 		<div class="mb-8">
 			<img
