@@ -4,47 +4,72 @@
 
 	let { data }: { data: PageData } = $props();
 
+	// Use $derived to make these reactive
 	let categoryName = $derived(data.categoryName);
 	let posts = $derived(data.posts);
+	let currentPage = $derived(data.currentPage);
+	let totalPages = $derived(data.totalPages);
+
+	// This derived value will create our smart pagination array
+	let paginationLinks = $derived.by(() => {
+		const pageRange = 2; // How many pages to show on each side of the current page
+		const links: (number | string)[] = [];
+
+		// Not enough pages to need ellipses
+		if (totalPages <= 5 + pageRange) {
+			for (let i = 1; i <= totalPages; i++) {
+				links.push(i);
+			}
+			return links;
+		}
+
+		// Always show the first page
+		links.push(1);
+		if (currentPage > pageRange + 2) {
+			links.push('...');
+		}
+
+		// Pages around the current page
+		for (
+			let i = Math.max(2, currentPage - pageRange);
+			i <= Math.min(totalPages - 1, currentPage + pageRange);
+			i++
+		) {
+			links.push(i);
+		}
+
+		if (currentPage < totalPages - (pageRange + 1)) {
+			links.push('...');
+		}
+
+		// Always show the last page
+		links.push(totalPages);
+
+		return links;
+	});
 
 	function formatPermalink(dateString, slug) {
 		const date = new Date(dateString);
-
 		const year = date.getUTCFullYear();
 		const month = String(date.getUTCMonth() + 1).padStart(2, '0');
 		const day = String(date.getUTCDate()).padStart(2, '0');
-
 		return `/${year}/${month}/${day}/${slug}`;
 	}
 
 	function timeAgo(dateString) {
 		const date = new Date(dateString);
 		const now = new Date();
-		const diffMs = now - date; // verschil in milliseconden
-
+		const diffMs = now - date;
 		const seconds = Math.floor(diffMs / 1000);
 		const minutes = Math.floor(seconds / 60);
 		const hours = Math.floor(minutes / 60);
 		const days = Math.floor(hours / 24);
-		const weeks = Math.floor(days / 7);
-		const months = Math.floor(days / 30); // ongeveer een maand
-		const years = Math.floor(days / 365); // ongeveer een jaar
-
-		if (years > 0) {
-			return years === 1 ? '1 jaar geleden' : `${years} jaar geleden`;
-		} else if (months > 0) {
-			return months === 1 ? '1 maand geleden' : `${months} maanden geleden`;
-		} else if (weeks > 0) {
-			return weeks === 1 ? '1 week geleden' : `${weeks} weken geleden`;
-		} else if (days > 0) {
-			return days === 1 ? '1 dag geleden' : `${days} dagen geleden`;
-		} else if (hours > 0) {
-			return hours === 1 ? '1 uur geleden' : `${hours} uur geleden`;
-		} else if (minutes > 0) {
-			return minutes === 1 ? '1 minuut geleden' : `${minutes} minuten geleden`;
-		} else {
-			return 'zojuist';
-		}
+		const years = Math.floor(days / 365);
+		if (years > 0) return years === 1 ? '1 jaar geleden' : `${years} jaar geleden`;
+		if (days > 0) return days === 1 ? '1 dag geleden' : `${days} dagen geleden`;
+		if (hours > 0) return hours === 1 ? '1 uur geleden' : `${hours} uur geleden`;
+		if (minutes > 0) return minutes === 1 ? '1 minuut geleden' : `${minutes} minuten geleden`;
+		return 'zojuist';
 	}
 </script>
 
@@ -213,42 +238,54 @@
 	</div>
 
 	<!-- Pagination -->
-	<div class="flex items-center justify-center space-x-2">
-		<!-- Previous Button -->
-		<button
-			class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50"
-			disabled
-		>
-			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
-				></path>
-			</svg>
-		</button>
+	{#if totalPages > 1}
+		<div class="flex items-center justify-center space-x-2">
+			<!-- Previous Button -->
+			<a
+				href={currentPage > 1 ? `?page=${currentPage - 1}` : '#'}
+				class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 {currentPage ===
+				1
+					? 'cursor-not-allowed opacity-50'
+					: ''}"
+				aria-disabled={currentPage === 1}
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
+					></path>
+				</svg>
+			</a>
 
-		<!-- Page Numbers -->
-		<button class="h-10 w-10 rounded-lg bg-mocha-500 font-medium text-white">1</button>
-		<button
-			class="h-10 w-10 rounded-lg bg-neutral-100 font-medium text-neutral-700 transition-colors hover:bg-mocha-100 hover:text-mocha-700"
-			>2</button
-		>
-		<button
-			class="h-10 w-10 rounded-lg bg-neutral-100 font-medium text-neutral-700 transition-colors hover:bg-mocha-100 hover:text-mocha-700"
-			>3</button
-		>
-		<span class="px-2 text-neutral-500">...</span>
-		<button
-			class="h-10 w-10 rounded-lg bg-neutral-100 font-medium text-neutral-700 transition-colors hover:bg-mocha-100 hover:text-mocha-700"
-			>12</button
-		>
+			<!-- Page Numbers -->
+			{#each paginationLinks as link}
+				{#if typeof link === 'number'}
+					<a
+						href={`?page=${link}`}
+						class="flex h-10 w-10 items-center justify-center rounded-lg font-medium transition-colors {currentPage ===
+						link
+							? 'bg-mocha-500 text-white'
+							: 'bg-neutral-100 text-neutral-700 hover:bg-mocha-100 hover:text-mocha-700'}"
+					>
+						{link}
+					</a>
+				{:else}
+					<span class="px-2 text-neutral-500">...</span>
+				{/if}
+			{/each}
 
-		<!-- Next Button -->
-		<button
-			class="rounded-lg bg-mocha-100 px-4 py-2 text-mocha-500 transition-colors hover:bg-mocha-200"
-		>
-			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
-				></path>
-			</svg>
-		</button>
-	</div>
+			<!-- Next Button -->
+			<a
+				href={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
+				class="rounded-lg bg-mocha-100 px-4 py-2 text-mocha-500 transition-colors hover:bg-mocha-200 {currentPage ===
+				totalPages
+					? 'cursor-not-allowed opacity-50'
+					: ''}"
+				aria-disabled={currentPage === totalPages}
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+					></path>
+				</svg>
+			</a>
+		</div>
+	{/if}
 </div>

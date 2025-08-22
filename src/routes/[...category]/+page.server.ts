@@ -2,7 +2,6 @@ import { client } from '$lib/sanity';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-// Define the shape of the data for a post in the list.
 export interface PostListItem {
 	_id: string;
 	title: string;
@@ -10,30 +9,42 @@ export interface PostListItem {
 	slug: {
 		current: string;
 	};
+	categories: { name: string; slug: { current: string } }[];
 	featuredMedia?: {
 		asset: {
 			url: string;
 			metadata: {
-				lqip: string; // Low Quality Image Placeholder
+				lqip: string;
 			};
 		};
 		alt?: string;
 	};
+	estimatedReadingTime: number;
 }
 
 type QueryResult = {
 	name: string;
 	posts: PostListItem[];
+	totalPosts: number;
 } | null;
 
-export const load: PageServerLoad = async ({ params }) => {
+// Define how many posts to show per page
+const pageSize = 10;
+
+export const load: PageServerLoad = async ({ params, url }) => {
 	const category = decodeURIComponent(params.category).split('/').filter(Boolean).at(-1);
 
-	// Fetch the category by slug, plus its latest 10 posts
+	// Get the current page number from the URL, default to 1
+	const page = Number(url.searchParams.get('page')) || 1;
+
+	// Calculate the start and end indices for the GROQ query
+	const start = (page - 1) * pageSize;
+	const end = page * pageSize;
+
 	const groqQuery = `
     *[_type == "category" && slug.current == $slug][0]{
       name,
-      "posts": *[_type == "post" && references(^._id)] | order(date desc)[0...10]{
+      "posts": *[_type == "post" && references(^._id)] | order(date desc)[$start...$end]{
         _id,
         title,
         date,
@@ -50,18 +61,32 @@ export const load: PageServerLoad = async ({ params }) => {
           "alt": featuredMedia.alt
         },
         "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
-      }
+      },
+      "totalPosts": count(*[_type == "post" && references(^._id)])
     }
   `;
 
-	const data = await client.fetch<QueryResult>(groqQuery, { slug: category });
+	const data = await client.fetch<QueryResult>(groqQuery, {
+		slug: category,
+		start: start,
+		end: end
+	});
 
 	if (!data) {
 		throw error(404, `Category "${category}" not found`);
 	}
 
+	const totalPages = Math.ceil(data.totalPosts / pageSize);
+
+	// If a user tries to access a page that doesn't exist, show a 404
+	if (page > totalPages && data.totalPosts > 0) {
+		throw error(404, 'Page not found');
+	}
+
 	return {
 		categoryName: data.name,
-		posts: data.posts
+		posts: data.posts,
+		currentPage: page,
+		totalPages: totalPages
 	};
 };
