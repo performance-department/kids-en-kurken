@@ -26,7 +26,7 @@ export interface Post {
 export const load: PageServerLoad = async ({ params }) => {
 	const { slug } = params;
 
-	const groqQuery = `*[_type == "post" && slug.current == $slug][0]{
+	const groqQuery = `*[_type == "post" && language == "nl" && slug.current == $slug][0]{
     ...,
     content[]{
       ...,

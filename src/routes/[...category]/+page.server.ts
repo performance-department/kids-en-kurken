@@ -44,7 +44,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	const groqQuery = `
     *[_type == "category" && slug.current == $slug][0]{
       name,
-      "posts": *[_type == "post" && references(^._id)] | order(date desc)[$start...$end]{
+      "posts": *[_type == "post" && language == "nl" && references(^._id)] | order(date desc)[$start...$end]{
         _id,
         title,
         date,

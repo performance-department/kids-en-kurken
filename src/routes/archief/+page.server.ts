@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const groqQuery = `
 	{
   // Page of posts
-  "posts": *[_type == "post"] | order(date desc)[$start...$end]{
+  "posts": *[_type == "post" && language == "nl"] | order(date desc)[$start...$end]{
   _id,
   title,
   date,
