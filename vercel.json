@@ -1,0 +1,22 @@
+{
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [
+				{
+					"key": "X-Frame-Options",
+					"value": "SAMEORIGIN"
+				}
+			]
+		},
+		{
+			"source": "/preview/(.*)",
+			"headers": [
+				{
+					"key": "X-Frame-Options",
+					"value": "ALLOWALL"
+				}
+			]
+		}
+	]
+}
