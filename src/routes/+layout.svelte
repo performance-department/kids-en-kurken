@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { VisualEditing } from '@sanity/visual-editing/svelte';
+
 	import { onNavigate } from '$app/navigation';
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -110,7 +112,7 @@
 		openDropdowns = {};
 	}
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -368,6 +370,10 @@
 <main class="flex-grow">
 	{@render children?.()}
 </main>
+
+{#if data.preview}
+	<VisualEditing />
+{/if}
 
 <footer class="bg-mocha-800 py-12">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
