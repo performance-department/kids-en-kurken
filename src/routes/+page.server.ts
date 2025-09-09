@@ -45,7 +45,7 @@ export const load: PageServerLoad = async () => {
 		},
 
 		// Blogs section
-		"blogs": *[_type == "post" && language == "nl" && "blogs" in categories[]->slug.current] | order(date desc)[0...8]{
+		"blogs": *[_type == "post" && language == "nl" && "blogs" in categories[]->slug.current] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
