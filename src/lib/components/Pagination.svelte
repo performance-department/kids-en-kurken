@@ -1,10 +1,19 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+
 	interface Props {
 		currentPage: number;
 		totalPages: number;
 	}
 
 	let { currentPage, totalPages }: Props = $props();
+
+	// Helper function to create URL with preserved search params
+	function createPageUrl(pageNumber: number): string {
+		const searchParams = new URLSearchParams($page.url.searchParams);
+		searchParams.set('page', pageNumber.toString());
+		return `?${searchParams.toString()}`;
+	}
 
 	let paginationLinks = $derived.by(() => {
 		const pageRange = 2;
@@ -43,7 +52,7 @@
 {#if totalPages > 1}
 	<div class="flex items-center justify-center space-x-2">
 		<a
-			href={currentPage > 1 ? `?page=${currentPage - 1}` : '#'}
+			href={currentPage > 1 ? createPageUrl(currentPage - 1) : '#'}
 			class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 {currentPage ===
 			1
 				? 'cursor-not-allowed opacity-50'
@@ -59,7 +68,7 @@
 		{#each paginationLinks as link}
 			{#if typeof link === 'number'}
 				<a
-					href={`?page=${link}`}
+					href={createPageUrl(link)}
 					class="flex h-10 w-10 items-center justify-center rounded-lg font-medium transition-colors {currentPage ===
 					link
 						? 'bg-mocha-500 text-white'
@@ -73,7 +82,7 @@
 		{/each}
 
 		<a
-			href={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
+			href={currentPage < totalPages ? createPageUrl(currentPage + 1) : '#'}
 			class="rounded-lg bg-mocha-100 px-4 py-2 text-mocha-500 transition-colors hover:bg-mocha-200 {currentPage ===
 			totalPages
 				? 'cursor-not-allowed opacity-50'
