@@ -35,23 +35,32 @@
 				</div>
 				<a
 					href={viewAllLink}
-					class="hidden sm:flex items-center gap-2 rounded-full border-2 border-mocha-200 px-6 py-3 font-medium text-mocha-700 transition-all hover:bg-mocha-50"
+					class="hidden items-center gap-2 rounded-full border-2 border-mocha-200 px-6 py-3 font-medium text-mocha-700 transition-all hover:bg-mocha-50 sm:flex"
 				>
 					Bekijk alles
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
 				</a>
 			</div>
 
 			<!-- Posts Horizontal Scroll -->
-			<div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+			<div class="scrollbar-hide flex gap-6 overflow-x-auto pb-4">
 				{#each posts as post}
-					<article class="group cursor-pointer flex-shrink-0 w-80">
+					<article class="group w-80 flex-shrink-0 cursor-pointer">
 						<a href={formatPermalink(post.date, post.slug.current)}>
-							<div class="overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+							<div
+								class="overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+							>
 								<div class="relative">
-									<div class="h-48 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+									<div
+										class="h-48 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200"
+									>
 										<img
 											src={post.featuredMedia?.asset
 												? urlFor(post.featuredMedia)
@@ -66,21 +75,20 @@
 											style={`view-transition-name:${post._id}`}
 										/>
 									</div>
-									<div class="absolute -bottom-6 left-6">
-										<div class="h-12 w-12 rounded-full bg-gradient-to-br from-mocha-400 to-mocha-600 flex items-center justify-center shadow-lg">
-											<span class="text-lg font-bold text-white">👨‍👩‍👧‍👦</span>
-										</div>
-									</div>
 								</div>
-								<div class="pt-8 pb-6 px-6">
+								<div class="px-6 pt-6 pb-6">
 									<div class="mb-2 flex flex-wrap gap-2">
 										{#each post.categories as category}
-											<span class="inline-block rounded-full bg-mocha-100 px-3 py-1 text-xs font-medium text-mocha-700">
+											<span
+												class="inline-block rounded-full bg-mocha-100 px-3 py-1 text-xs font-medium text-mocha-700"
+											>
 												{category.name}
 											</span>
 										{/each}
 									</div>
-									<h3 class="mb-3 line-clamp-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-mocha-600">
+									<h3
+										class="mb-3 line-clamp-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-mocha-600"
+									>
 										{post.title}
 									</h3>
 									<div class="flex items-center justify-between text-sm text-neutral-500">
@@ -102,7 +110,12 @@
 				>
 					Bekijk alles
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
 				</a>
 			</div>

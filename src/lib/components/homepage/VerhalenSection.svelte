@@ -38,7 +38,9 @@
 				{#each posts as post, index}
 					<article class="group cursor-pointer">
 						<a href={formatPermalink(post.date, post.slug.current)}>
-							<div class="overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+							<div
+								class="overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+							>
 								<div class="relative h-56 overflow-hidden">
 									<img
 										src={post.featuredMedia?.asset
@@ -53,27 +55,28 @@
 										class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
 										style={`view-transition-name:${post._id}`}
 									/>
-									<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+									<div
+										class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
+									></div>
 									<div class="absolute bottom-4 left-4">
 										{#each post.categories as category}
-											<span class="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-neutral-800 backdrop-blur-sm">
+											<span
+												class="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-neutral-800 backdrop-blur-sm"
+											>
 												{category.name}
 											</span>
 										{/each}
 									</div>
 								</div>
 								<div class="p-6">
-									<h3 class="mb-3 line-clamp-2 text-xl font-bold text-neutral-900 transition-colors group-hover:text-rose-600">
+									<h3
+										class="mb-3 line-clamp-2 text-xl font-bold text-neutral-900 transition-colors group-hover:text-rose-600"
+									>
 										{post.title}
 									</h3>
-									<div class="flex items-center justify-between">
-										<div class="flex items-center gap-3">
-											<div class="h-8 w-8 rounded-full bg-rose-200 flex items-center justify-center">
-												<span class="text-xs font-medium text-rose-700">♥</span>
-											</div>
-											<span class="text-sm text-neutral-600">{timeAgo(post.date)}</span>
-										</div>
-										<span class="text-sm text-neutral-500">{post.estimatedReadingTime} min lezen</span>
+									<div class="flex items-center justify-between text-xs text-neutral-500">
+										<span>{timeAgo(post.date)}</span>
+										<span>{post.estimatedReadingTime} min lezen</span>
 									</div>
 								</div>
 							</div>
@@ -86,11 +89,16 @@
 			<div class="mt-12 text-center">
 				<a
 					href={viewAllLink}
-					class="inline-flex items-center gap-2 rounded-full bg-rose-600 px-8 py-4 font-bold text-white transition-all hover:bg-rose-700 hover:scale-105"
+					class="inline-flex items-center gap-2 rounded-full bg-rose-600 px-8 py-4 font-bold text-white transition-all hover:scale-105 hover:bg-rose-700"
 				>
 					Alle verhalen lezen
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
 				</a>
 			</div>
