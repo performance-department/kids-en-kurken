@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { menuItems } from '$lib/data/menu';
 
+	let { openSearchModal }: { openSearchModal: () => void } = $props();
+
 	let mobileMenuOpen = $state(false);
 	let openDropdowns = $state({});
 
@@ -89,6 +91,7 @@
 
 				<!-- Desktop Search Button -->
 				<button
+					onclick={openSearchModal}
 					class="ml-4 rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,6 +109,7 @@
 			<div class="flex items-center space-x-4 lg:hidden">
 				<!-- Mobile Search Button -->
 				<button
+					onclick={openSearchModal}
 					class="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
