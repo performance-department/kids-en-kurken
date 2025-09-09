@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import ImageBlock from '$lib/components/ImageBlock.svelte';
 	import ExternalImageBlock from '$lib/components/ExternalImageBlock.svelte';
+	import YouTubeBlock from '$lib/components/YouTubeBlock.svelte';
 	import type { PortableTextComponents } from '@portabletext/svelte';
 	import { urlFor } from '$lib/sanity';
 
@@ -12,7 +13,8 @@
 	const components: PortableTextComponents = {
 		types: {
 			image: ImageBlock,
-			externalImage: ExternalImageBlock
+			externalImage: ExternalImageBlock,
+			youtube: YouTubeBlock
 		}
 	};
 </script>
