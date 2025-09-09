@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink, timeAgo } from '$lib/utils/date';
+	import { StarIcon } from '$lib';
 
 	interface PostListItem {
 		_id: string;
@@ -32,7 +33,10 @@
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<!-- Section Header -->
 			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-4xl font-bold text-neutral-900">{title}</h2>
+				<div class="mb-4 flex items-center justify-center gap-4">
+					<StarIcon size={36} class="text-blue-600" />
+					<h2 class="text-4xl font-bold text-neutral-900">{title}</h2>
+				</div>
 				<p class="text-lg text-neutral-600">Praktische tips en adviezen voor het ouderschap</p>
 			</div>
 
@@ -41,8 +45,12 @@
 				{#if featuredPost}
 					<article class="group cursor-pointer">
 						<a href={formatPermalink(featuredPost.date, featuredPost.slug.current)}>
-							<div class="overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-								<div class="relative h-72 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+							<div
+								class="overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+							>
+								<div
+									class="relative h-72 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200"
+								>
 									<img
 										src={featuredPost.featuredMedia?.asset
 											? urlFor(featuredPost.featuredMedia)
@@ -56,7 +64,9 @@
 										class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 										style={`view-transition-name:${featuredPost._id}`}
 									/>
-									<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+									<div
+										class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
+									></div>
 									<div class="absolute top-6 left-6">
 										<span class="rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white">
 											Featured
@@ -66,12 +76,16 @@
 								<div class="p-8">
 									<div class="mb-4 flex flex-wrap gap-2">
 										{#each featuredPost.categories as category}
-											<span class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+											<span
+												class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700"
+											>
 												{category.name}
 											</span>
 										{/each}
 									</div>
-									<h3 class="mb-4 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-blue-600">
+									<h3
+										class="mb-4 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-blue-600"
+									>
 										{featuredPost.title}
 									</h3>
 									<div class="flex items-center justify-between text-sm text-neutral-500">
@@ -89,7 +103,9 @@
 					{#each listPosts as post, index}
 						<article class="group cursor-pointer">
 							<a href={formatPermalink(post.date, post.slug.current)}>
-								<div class="flex gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+								<div
+									class="flex gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+								>
 									<div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl">
 										<img
 											src={post.featuredMedia?.asset
@@ -105,18 +121,22 @@
 											style={`view-transition-name:${post._id}`}
 										/>
 									</div>
-									<div class="flex-1 min-w-0">
+									<div class="min-w-0 flex-1">
 										<div class="mb-2 flex items-center gap-2">
 											<span class="text-lg font-bold text-blue-600">{index + 2}</span>
 											<div class="flex flex-wrap gap-1">
 												{#each post.categories.slice(0, 1) as category}
-													<span class="rounded-full bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+													<span
+														class="rounded-full bg-neutral-100 px-2 py-1 text-xs text-neutral-600"
+													>
 														{category.name}
 													</span>
 												{/each}
 											</div>
 										</div>
-										<h4 class="mb-2 line-clamp-2 text-base font-bold text-neutral-900 transition-colors group-hover:text-blue-600">
+										<h4
+											class="mb-2 line-clamp-2 text-base font-bold text-neutral-900 transition-colors group-hover:text-blue-600"
+										>
 											{post.title}
 										</h4>
 										<div class="flex items-center gap-4 text-xs text-neutral-500">
@@ -139,7 +159,12 @@
 				>
 					Alle artikelen bekijken
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
 				</a>
 			</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink, timeAgo } from '$lib/utils/date';
+	import { StarIcon } from '$lib';
 
 	interface PostListItem {
 		_id: string;
@@ -37,7 +38,10 @@
 					</svg>
 					<span class="font-bold">KIDS EN KURKEN TV</span>
 				</div>
-				<h2 class="mb-4 text-4xl font-bold">{title}</h2>
+				<div class="mb-4 flex items-center justify-center gap-4">
+					<StarIcon size={36} class="text-purple-300" />
+					<h2 class="text-4xl font-bold">{title}</h2>
+				</div>
 				<p class="text-lg text-white/80">Video's, vlogs en series voor de hele familie</p>
 			</div>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink, timeAgo } from '$lib/utils/date';
+	import { StarIcon } from '$lib';
 
 	interface PostListItem {
 		_id: string;
@@ -28,6 +29,11 @@
 {#if featuredPost}
 	<section class="mb-16 pt-8">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<!-- Section Header -->
+			<div class="mb-8 flex items-center gap-3">
+				<StarIcon size={32} class="text-neutral-700" />
+				<h2 class="text-3xl font-bold text-neutral-900">Uitgelicht</h2>
+			</div>
 			<div class="grid gap-8 lg:grid-cols-3">
 				<!-- Main Featured Post -->
 				<article class="group cursor-pointer lg:col-span-2">

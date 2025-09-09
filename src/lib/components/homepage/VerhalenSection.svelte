@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink, timeAgo } from '$lib/utils/date';
+	import { StarIcon } from '$lib';
 
 	interface PostListItem {
 		_id: string;
@@ -29,7 +30,10 @@
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<!-- Section Header -->
 			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-4xl font-bold text-neutral-900">{title}</h2>
+				<div class="mb-4 flex items-center justify-center gap-4">
+					<StarIcon size={36} class="text-rose-600" />
+					<h2 class="text-4xl font-bold text-neutral-900">{title}</h2>
+				</div>
 				<p class="text-lg text-neutral-600">Ontroerende verhalen van echte ouders</p>
 			</div>
 
