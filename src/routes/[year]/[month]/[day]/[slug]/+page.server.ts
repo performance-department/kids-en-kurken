@@ -23,9 +23,7 @@ export interface Post {
 	estimatedReadingTime: number;
 }
 
-export const load: PageServerLoad = async ({ locals: { client, preview }, params }) => {
-	const options = { stega: preview ? true : false };
-
+export const load: PageServerLoad = async ({ params }) => {
 	const { slug } = params;
 
 	const groqQuery = `*[_type == "post" && language == "nl" && slug.current == $slug][0]{
@@ -48,7 +46,7 @@ export const load: PageServerLoad = async ({ locals: { client, preview }, params
     "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
   }`;
 
-	const post: Post = await client.fetch(groqQuery, { slug }, options);
+	const post: Post = await client.fetch(groqQuery, { slug });
 
 	if (!post) {
 		error(404, 'Post not found');
