@@ -6,6 +6,7 @@
 	import YouTubeBlock from '$lib/components/YouTubeBlock.svelte';
 	import type { PortableTextComponents } from '@portabletext/svelte';
 	import { urlFor } from '$lib/sanity';
+	import Ad from '$lib/components/Ad.svelte';
 
 	let { data }: { data: PageData } = $props();
 	const { post } = data;
@@ -82,13 +83,7 @@
 		</div>
 	</div>
 
-	<div class="mb-8">
-		<div
-			class="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
-		>
-			<span class="font-medium text-neutral-400">Ad</span>
-		</div>
-	</div>
+	<Ad size="small" class="mb-8" />
 
 	<div class="prose max-w-4xl prose-neutral">
 		<PortableText value={post.content} {components} />
@@ -112,13 +107,7 @@
 		</div>
 	{/if}
 
-	<div class="mt-8 mb-8">
-		<div
-			class="flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
-		>
-			<span class="font-medium text-neutral-400">Ad</span>
-		</div>
-	</div>
+	<Ad class="mt-8 mb-8" />
 </article>
 
 <section class="mx-auto max-w-4xl border-t border-neutral-200 px-4 py-12 sm:px-6 lg:px-8">
@@ -162,14 +151,7 @@
 		</div>
 	</div>
 
-	<!-- Ad Placeholder - Before Comments -->
-	<div class="mb-8">
-		<div
-			class="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
-		>
-			<span class="font-medium text-neutral-400">Ad</span>
-		</div>
-	</div>
+	<Ad size="small" class="mb-8" />
 
 	<!-- Comments List -->
 	<div class="space-y-6">

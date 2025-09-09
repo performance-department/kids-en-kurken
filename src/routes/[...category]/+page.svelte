@@ -3,6 +3,7 @@
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
 	import PostList from '$lib/components/PostList.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
+	import Ad from '$lib/components/Ad.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -33,14 +34,7 @@
 		</h1>
 	</div>
 
-	<!-- Ad Placeholder - Top Banner -->
-	<div class="mb-12">
-		<div
-			class="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-100"
-		>
-			<span class="font-medium text-neutral-400">Ad</span>
-		</div>
-	</div>
+	<Ad size="small" class="mb-12" />
 
 	<PostList {posts} />
 

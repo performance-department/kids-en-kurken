@@ -104,10 +104,10 @@
 	<!-- Regular Posts Grid -->
 	<div class="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 		{#each posts.slice(1) as post (post.title)}
-			<article class="group cursor-pointer">
-				<a href={formatPermalink(post.date, post.slug.current)}>
+			<article class="group h-full cursor-pointer">
+				<a href={formatPermalink(post.date, post.slug.current)} class="block h-full">
 					<div
-						class="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+						class="flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
 					>
 						<div class="h-48 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
 							<img
@@ -124,7 +124,7 @@
 								style={`view-transition-name:${post._id}`}
 							/>
 						</div>
-						<div class="p-6">
+						<div class="flex flex-grow flex-col p-6">
 							<div class="mb-3 flex flex-wrap gap-2">
 								{#each post.categories as category (category.name)}
 									<span
@@ -135,11 +135,13 @@
 								{/each}
 							</div>
 							<h3
-								class="mb-4 line-clamp-3 text-[1.25rem] leading-[1.3] font-bold text-neutral-900 transition-colors group-hover:text-rose-600"
+								class="mb-4 line-clamp-3 flex-grow text-[1.25rem] leading-[1.3] font-bold text-neutral-900 transition-colors group-hover:text-rose-600"
 							>
 								{post.title}
 							</h3>
-							<div class="flex items-center justify-between text-[0.75rem] text-neutral-500">
+							<div
+								class="mt-auto flex items-center justify-between text-[0.75rem] text-neutral-500"
+							>
 								<div class="flex items-center space-x-2">
 									<div class="flex h-6 w-6 items-center justify-center rounded-full bg-rose-200">
 										<span class="text-[0.625rem] font-medium text-rose-700">R</span>
