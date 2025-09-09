@@ -22,6 +22,7 @@ export interface PostListItem {
 }
 
 export const load: PageServerLoad = async () => {
+	// Using direct category reference IDs for better performance
 	const groqQuery = `
 	{
 		// Latest 10 posts for "Nieuw" section
@@ -44,8 +45,8 @@ export const load: PageServerLoad = async () => {
 			"estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 		},
 
-		// Blogs section
-		"blogs": *[_type == "post" && language == "nl" && "blogs" in categories[]->slug.current] | order(date desc)[0...6]{
+		// Blogs section - using direct category reference
+		"blogs": *[_type == "post" && language == "nl" && references("category-2473")] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
@@ -64,8 +65,8 @@ export const load: PageServerLoad = async () => {
 			"estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 		},
 
-		// Verhalen (ouderverhalen) section
-		"verhalen": *[_type == "post" && language == "nl" && "ouderverhalen" in categories[]->slug.current] | order(date desc)[0...6]{
+		// Verhalen (ouderverhalen) section - using direct category reference
+		"verhalen": *[_type == "post" && language == "nl" && references("category-1251")] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
@@ -84,8 +85,8 @@ export const load: PageServerLoad = async () => {
 			"estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 		},
 
-		// Toffe ouders section
-		"toffeOuders": *[_type == "post" && language == "nl" && "toffe-ouders" in categories[]->slug.current] | order(date desc)[0...6]{
+		// Toffe ouders section - using direct category reference
+		"toffeOuders": *[_type == "post" && language == "nl" && references("category-1252")] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
@@ -104,8 +105,8 @@ export const load: PageServerLoad = async () => {
 			"estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 		},
 
-		// Artikelen section
-		"artikelen": *[_type == "post" && language == "nl" && "artikelen" in categories[]->slug.current] | order(date desc)[0...8]{
+		// Artikelen section - using direct category reference
+		"artikelen": *[_type == "post" && language == "nl" && references("category-2455")] | order(date desc)[0...8]{
 			_id,
 			title,
 			date,
@@ -124,8 +125,8 @@ export const load: PageServerLoad = async () => {
 			"estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 		},
 
-		// TV section
-		"tv": *[_type == "post" && language == "nl" && "tv" in categories[]->slug.current] | order(date desc)[0...6]{
+		// TV section - using direct category reference
+		"tv": *[_type == "post" && language == "nl" && references("category-2476")] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
