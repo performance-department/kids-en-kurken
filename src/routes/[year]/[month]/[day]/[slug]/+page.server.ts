@@ -81,10 +81,11 @@ function buildCommentTree(comments: Comment[]): Comment[] {
 	return topLevelComments;
 }
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	const { slug } = params;
 
-	const postQuery = `*[_type == "post" && language == "nl" && slug.current == $slug][0]{
+	// Combined query to fetch post and comments in single request
+	const combinedQuery = `*[_type == "post" && language == "nl" && slug.current == $slug][0]{
     ...,
     content[]{
       ...,
@@ -101,27 +102,31 @@ export const load: PageServerLoad = async ({ params }) => {
       name,
       slug
     },
-    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
+    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),
+    "commentBuckets": *[_type == "commentBucket" && post._ref == ^._id]{
+      bucketIndex,
+      comments[status == "approved"],
+      commentCount
+    } | order(bucketIndex asc)
   }`;
 
-	const post: Post = await client.fetch(postQuery, { slug });
+	const result = await client.fetch(combinedQuery, { slug });
 
-	if (!post) {
+	if (!result) {
 		error(404, 'Post not found');
 	}
 
-	// Fetch comment buckets for this post
-	const commentsQuery = `*[_type == "commentBucket" && post._ref == $postId]{
-		bucketIndex,
-		comments[status == "approved"],
-		commentCount
-	} | order(bucketIndex asc)`;
+	// Set browser cache headers
+	setHeaders({
+		'cache-control': 'public, max-age=300, s-maxage=3600', // 5min browser, 1hr CDN
+		vary: 'Accept-Encoding'
+	});
 
-	const commentBuckets = await client.fetch(commentsQuery, { postId: post._id });
+	const { commentBuckets, ...post } = result;
 
 	// Flatten all comments from all buckets
-	const allComments: Comment[] = commentBuckets
-		.flatMap((bucket: any) => bucket.comments)
+	const allComments: Comment[] = (commentBuckets || [])
+		.flatMap((bucket: any) => bucket.comments || [])
 		.map((comment) => ({ ...comment, replies: [] }));
 
 	// Build the comment tree with proper sorting
