@@ -107,7 +107,7 @@
 		<div class="mb-8">
 			<img
 				src={urlFor(post.featuredMedia).width(800).auto('format').url()}
-				alt="Kind met spaarpot en geld"
+				alt=""
 				class="h-[400px] w-full rounded-2xl object-cover shadow-lg sm:h-[500px]"
 				style={`view-transition-name: ${post._id}`}
 			/>
