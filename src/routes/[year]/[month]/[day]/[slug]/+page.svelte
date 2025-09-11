@@ -7,9 +7,10 @@
 	import type { PortableTextComponents } from '@portabletext/svelte';
 	import { urlFor } from '$lib/sanity';
 	import Ad from '$lib/components/Ad.svelte';
+	import type { Comment } from './+page.server';
 
 	let { data }: { data: PageData } = $props();
-	const { post } = data;
+	const { post, comments, commentCount } = data;
 
 	const components: PortableTextComponents = {
 		types: {
@@ -18,6 +19,40 @@
 			youtube: YouTubeBlock
 		}
 	};
+
+	// Helper function to get initials from name
+	function getInitials(name: string): string {
+		return name
+			.split(' ')
+			.map((word) => word[0])
+			.join('')
+			.toUpperCase()
+			.slice(0, 2);
+	}
+
+	// Helper function to format date
+	function formatDate(dateString: string): string {
+		const date = new Date(dateString);
+		const now = new Date();
+		const diffMs = now.getTime() - date.getTime();
+		const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+		const diffDays = Math.floor(diffHours / 24);
+
+		if (diffDays === 0) {
+			if (diffHours === 0) return 'Zojuist';
+			return `${diffHours} uur geleden`;
+		} else if (diffDays === 1) {
+			return 'Gisteren';
+		} else if (diffDays < 7) {
+			return `${diffDays} dagen geleden`;
+		} else {
+			return date.toLocaleDateString('nl-NL', {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+			});
+		}
+	}
 </script>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -79,7 +114,7 @@
 			<span class="hidden sm:inline">•</span>
 			<span>{post.estimatedReadingTime} min lezen</span>
 			<span class="hidden sm:inline">•</span>
-			<span>19 reacties</span>
+			<span>{commentCount} reacties</span>
 		</div>
 	</div>
 
@@ -112,7 +147,9 @@
 
 <section class="mx-auto max-w-4xl border-t border-neutral-200 px-4 py-12 sm:px-6 lg:px-8">
 	<div class="mb-8">
-		<h3 class="mb-2 text-[2rem] leading-[1.3] font-bold text-neutral-900">Reacties (19)</h3>
+		<h3 class="mb-2 text-[2rem] leading-[1.3] font-bold text-neutral-900">
+			Reacties ({commentCount})
+		</h3>
 		<p class="text-[1rem] leading-[1.7] text-neutral-600">
 			Deel je ervaringen en steun andere ouders die met vergelijkbare situaties te maken hebben.
 		</p>
@@ -154,130 +191,75 @@
 	<Ad size="small" class="mb-8" />
 
 	<!-- Comments List -->
-	<div class="space-y-6">
-		<!-- Comment 1 -->
-		<div
-			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
-		>
-			<div class="flex items-start space-x-4">
-				<div
-					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
-				>
-					<span class="text-sm font-medium text-mocha-700">JD</span>
-				</div>
-				<div class="flex-1">
-					<div class="mb-2 flex items-center space-x-3">
-						<h5 class="font-semibold text-neutral-900">Jane Doe</h5>
-						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">2 uur geleden</span>
-					</div>
-					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
-						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
-						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
-						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
-					</p>
-					<div class="flex items-center space-x-4">
-						<button
-							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
-							>Beantwoorden</button
-						>
-					</div>
-				</div>
-			</div>
+	{#if comments.length > 0}
+		<div class="space-y-6">
+			{#each comments as comment}
+				{@render renderComment(comment, 0)}
+			{/each}
 		</div>
-
-		<!-- Comment 2 with Reply -->
-		<div
-			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
-		>
-			<div class="flex items-start space-x-4">
-				<div
-					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
-				>
-					<span class="text-sm font-medium text-mocha-700">JD</span>
-				</div>
-				<div class="flex-1">
-					<div class="mb-2 flex items-center space-x-3">
-						<h5 class="font-semibold text-neutral-900">Jane Doe</h5>
-						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">4 uur geleden</span>
-					</div>
-					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
-						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
-						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
-						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
-					</p>
-					<div class="mb-4 flex items-center space-x-4">
-						<button
-							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
-							>Beantwoorden</button
-						>
-					</div>
-
-					<!-- Reply -->
-					<div class="ml-10 border-l-2 border-neutral-200 pl-4">
-						<div class="flex items-start space-x-4">
-							<div
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
-							>
-								<span class="text-xs font-medium text-mocha-700">JD</span>
-							</div>
-							<div class="flex-1">
-								<div class="mb-2 flex items-center space-x-3">
-									<h6 class="text-[1rem] font-semibold text-neutral-900">John Doe</h6>
-									<span class="text-[0.875rem] leading-[1.5] text-neutral-500">3 uur geleden</span>
-								</div>
-								<p class="mb-2 text-[1rem] leading-[1.7] text-neutral-700">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros
-									felis. Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio
-									eget elementum imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna
-									est, dignissim ac consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	{:else}
+		<div class="py-12 text-center">
+			<p class="text-neutral-500">Nog geen reacties. Wees de eerste!</p>
 		</div>
+	{/if}
+</section>
 
-		<!-- Comment 3 -->
-		<div
-			class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
-		>
-			<div class="flex items-start space-x-4">
-				<div
-					class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-mocha-200"
-				>
-					<span class="text-sm font-medium text-mocha-700">JD</span>
-				</div>
-				<div class="flex-1">
-					<div class="mb-2 flex items-center space-x-3">
-						<h5 class="font-semibold text-neutral-900">John Doe</h5>
-						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">6 uur geleden</span>
-					</div>
-					<p class="mb-3 text-[1rem] leading-[1.7] text-neutral-700">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel eros felis.
-						Aenean at ultrices eros, et vestibulum orci. Pellentesque elementum odio eget elementum
-						imperdiet. Nulla dapibus vulputate felis sed egestas. Integer urna est, dignissim ac
-						consequat et, tincidunt vel turpis. Praesent eget posuere nibh.
-					</p>
-					<div class="flex items-center space-x-4">
-						<button
-							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
-							>Beantwoorden</button
-						>
-					</div>
-				</div>
-			</div>
-		</div>
+{#snippet renderComment(comment: Comment, depth: number)}
+	{@const maxDepth = 5}
+	{@const isMaxDepth = depth >= maxDepth}
+	{@const marginLeft = depth > 0 ? `${Math.min(depth * 2.5, 12.5)}rem` : '0'}
+	{@const avatarSize = depth === 0 ? 'h-12 w-12' : 'h-10 w-10'}
+	{@const textSize = depth === 0 ? 'text-sm' : 'text-xs'}
 
-		<!-- Load More Comments -->
-		<div class="pt-6 text-center">
-			<button
-				class="rounded-full border-2 border-neutral-300 px-8 py-3 font-medium text-neutral-700 transition-colors hover:border-rose-300 hover:bg-neutral-50"
+	<div
+		class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
+		style={`margin-left: ${marginLeft}`}
+	>
+		<div class="flex items-start space-x-4">
+			<div
+				class={`flex ${avatarSize} flex-shrink-0 items-center justify-center rounded-full bg-mocha-200`}
 			>
-				Laad meer reacties
-			</button>
+				<span class={`${textSize} font-medium text-mocha-700`}>
+					{getInitials(comment.authorName || 'Anonymous')}
+				</span>
+			</div>
+			<div class="flex-1">
+				<div class="mb-2 flex items-center space-x-3">
+					<h5 class={`font-semibold text-neutral-900 ${depth === 0 ? 'text-base' : 'text-sm'}`}>
+						{comment.authorName || 'Anonymous'}
+					</h5>
+					{#if comment.date}
+						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">
+							{formatDate(comment.date)}
+						</span>
+					{/if}
+				</div>
+				{#if comment.content}
+					<div
+						class={`mb-3 leading-[1.7] text-neutral-700 ${depth === 0 ? 'text-[1rem]' : 'text-[0.875rem]'}`}
+					>
+						{@html comment.content}
+					</div>
+				{/if}
+				{#if !isMaxDepth}
+					<div class="flex items-center space-x-4">
+						<button
+							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+						>
+							Beantwoorden
+						</button>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
-</section>
+
+	<!-- Render replies -->
+	{#if comment.replies.length > 0 && !isMaxDepth}
+		<div class="mt-4 space-y-4">
+			{#each comment.replies as reply}
+				{@render renderComment(reply, depth + 1)}
+			{/each}
+		</div>
+	{/if}
+{/snippet}
