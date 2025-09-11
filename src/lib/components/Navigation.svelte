@@ -23,9 +23,9 @@
 	}
 </script>
 
-<!-- Header with Logo -->
-<header class="border-b border-neutral-200 bg-white">
-	<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+<!-- Header with Logo - Hidden on mobile -->
+<header class="hidden border-b border-neutral-200 bg-white lg:block">
+	<div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
 		<div class="flex justify-center">
 			<a href="/" class="block">
 				<img src="/logo_2x.png" alt="Kids en Kurken" class="h-12 w-auto" />
@@ -37,7 +37,13 @@
 <!-- Sticky Navigation -->
 <nav class="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur-md">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="flex h-14 items-center justify-end">
+		<div class="flex h-14 items-center justify-between lg:justify-end">
+			<!-- Mobile Logo -->
+			<div class="lg:hidden">
+				<a href="/" class="block">
+					<img src="/logo_2x.png" alt="Kids en Kurken" class="h-8 w-auto" />
+				</a>
+			</div>
 			<!-- Desktop Menu -->
 			<div class="hidden items-center space-x-1 lg:flex">
 				{#each menuItems as item (item.title)}
