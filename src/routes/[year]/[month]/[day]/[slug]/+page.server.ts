@@ -1,6 +1,7 @@
 import { client } from '$lib/sanity';
-import type { PageServerLoad } from './$types';
-import { error } from '@sveltejs/kit';
+import type { PageServerLoad, Actions } from './$types';
+import { error, fail } from '@sveltejs/kit';
+import { addComment, addReply } from '$lib/commentService.js';
 
 // Define a reusable type for linked categories and tags
 interface ReferenceItem {
@@ -137,4 +138,46 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		comments: topLevelComments,
 		commentCount: allComments.length
 	};
+};
+
+export const actions: Actions = {
+	addComment: async ({ request }) => {
+		try {
+			const formData = await request.formData();
+			const result = await addComment(formData);
+			return { success: true, ...result };
+		} catch (error: any) {
+			console.error('Failed to add comment:', error);
+			if (error.issues) {
+				// Zod validation errors
+				const fieldErrors: Record<string, string> = {};
+				error.issues.forEach((issue: any) => {
+					const field = issue.path[0];
+					fieldErrors[field] = issue.message;
+				});
+				return fail(400, { fieldErrors });
+			}
+			return fail(500, { error: 'Failed to add comment' });
+		}
+	},
+
+	addReply: async ({ request }) => {
+		try {
+			const formData = await request.formData();
+			const result = await addReply(formData);
+			return { success: true, ...result };
+		} catch (error: any) {
+			console.error('Failed to add reply:', error);
+			if (error.issues) {
+				// Zod validation errors
+				const fieldErrors: Record<string, string> = {};
+				error.issues.forEach((issue: any) => {
+					const field = issue.path[0];
+					fieldErrors[field] = issue.message;
+				});
+				return fail(400, { fieldErrors });
+			}
+			return fail(500, { error: 'Failed to add reply' });
+		}
+	}
 };

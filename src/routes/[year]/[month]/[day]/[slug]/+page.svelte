@@ -7,10 +7,16 @@
 	import type { PortableTextComponents } from '@portabletext/svelte';
 	import { urlFor } from '$lib/sanity';
 	import Ad from '$lib/components/Ad.svelte';
-	import type { Comment } from './+page.server';
+	import CommentForm from '$lib/components/CommentForm.svelte';
+	import CommentThread from '$lib/components/CommentThread.svelte';
+	import type { Comment } from '$lib/commentService.js';
+	import { onMount } from 'svelte';
 
 	let { data }: { data: PageData } = $props();
-	const { post, comments, commentCount } = data;
+	const { post, comments: initialComments, commentCount: initialCommentCount } = data;
+
+	let comments = $state<Comment[]>(initialComments);
+	let commentCount = $state(initialCommentCount);
 
 	function extractTextFromPortableText(blocks: any[]): string {
 		if (!blocks) return '';
@@ -73,6 +79,11 @@
 				year: 'numeric'
 			});
 		}
+	}
+
+	function handleCommentSuccess() {
+		// Form actions will trigger a page reload which updates the comments automatically
+		// No need to manually update state since SvelteKit handles this
 	}
 </script>
 
@@ -182,36 +193,8 @@
 	</div>
 
 	<!-- Comment Form -->
-	<div class="mb-12 rounded-2xl bg-neutral-50 p-6">
-		<h4 class="mb-4 text-[1.5rem] leading-[1.4] font-semibold text-neutral-900">
-			Reactie plaatsen
-		</h4>
-		<div class="space-y-4">
-			<div class="grid gap-4 md:grid-cols-2">
-				<input
-					type="text"
-					placeholder="Je naam"
-					class="rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
-				/>
-				<input
-					type="email"
-					placeholder="Je e-mailadres"
-					class="rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
-				/>
-			</div>
-			<textarea
-				placeholder="Deel je gedachten en ervaringen..."
-				rows="4"
-				class="w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 transition-colors outline-none focus:border-mocha-300 focus:ring-2 focus:ring-mocha-200"
-			></textarea>
-			<div class="flex items-center justify-end">
-				<button
-					class="rounded-xl bg-mocha-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-mocha-600"
-				>
-					Plaatsen
-				</button>
-			</div>
-		</div>
+	<div class="mb-12">
+		<CommentForm postId={post._id} onSuccess={handleCommentSuccess} />
 	</div>
 
 	<Ad size="small" class="mb-8" />
@@ -219,8 +202,8 @@
 	<!-- Comments List -->
 	{#if comments.length > 0}
 		<div class="space-y-6">
-			{#each comments as comment}
-				{@render renderComment(comment, 0)}
+			{#each comments as comment (comment.wpId)}
+				<CommentThread {comment} postId={post._id} onSuccess={handleCommentSuccess} />
 			{/each}
 		</div>
 	{:else}
@@ -229,63 +212,3 @@
 		</div>
 	{/if}
 </section>
-
-{#snippet renderComment(comment: Comment, depth: number)}
-	{@const maxDepth = 5}
-	{@const isMaxDepth = depth >= maxDepth}
-	{@const marginLeft = depth > 0 ? `${Math.min(depth * 2.5, 12.5)}rem` : '0'}
-	{@const avatarSize = depth === 0 ? 'h-12 w-12' : 'h-10 w-10'}
-	{@const textSize = depth === 0 ? 'text-sm' : 'text-xs'}
-
-	<div
-		class="rounded-xl border border-neutral-200 p-6 transition-all duration-200 hover:bg-neutral-50"
-		style={`margin-left: ${marginLeft}`}
-	>
-		<div class="flex items-start space-x-4">
-			<div
-				class={`flex ${avatarSize} flex-shrink-0 items-center justify-center rounded-full bg-mocha-200`}
-			>
-				<span class={`${textSize} font-medium text-mocha-700`}>
-					{getInitials(comment.authorName || 'Anonymous')}
-				</span>
-			</div>
-			<div class="flex-1">
-				<div class="mb-2 flex items-center space-x-3">
-					<h5 class={`font-semibold text-neutral-900 ${depth === 0 ? 'text-base' : 'text-sm'}`}>
-						{comment.authorName || 'Anonymous'}
-					</h5>
-					{#if comment.date}
-						<span class="text-[0.875rem] leading-[1.5] text-neutral-500">
-							{formatDate(comment.date)}
-						</span>
-					{/if}
-				</div>
-				{#if comment.content}
-					<div
-						class={`mb-3 leading-[1.7] text-neutral-700 ${depth === 0 ? 'text-[1rem]' : 'text-[0.875rem]'}`}
-					>
-						{@html comment.content}
-					</div>
-				{/if}
-				{#if !isMaxDepth}
-					<div class="flex items-center space-x-4">
-						<button
-							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
-						>
-							Beantwoorden
-						</button>
-					</div>
-				{/if}
-			</div>
-		</div>
-	</div>
-
-	<!-- Render replies -->
-	{#if comment.replies.length > 0 && !isMaxDepth}
-		<div class="mt-4 space-y-4">
-			{#each comment.replies as reply}
-				{@render renderComment(reply, depth + 1)}
-			{/each}
-		</div>
-	{/if}
-{/snippet}
