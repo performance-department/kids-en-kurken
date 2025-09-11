@@ -21,7 +21,7 @@ export interface PostListItem {
 	estimatedReadingTime: number;
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ setHeaders }) => {
 	// Using direct category reference IDs for better performance
 	const groqQuery = `
 	{
@@ -155,6 +155,12 @@ export const load: PageServerLoad = async () => {
 		artikelen: PostListItem[];
 		tv: PostListItem[];
 	}>(groqQuery);
+
+	// Set browser cache headers
+	setHeaders({
+		'cache-control': 'public, max-age=300, s-maxage=1800', // 5min browser, 30min CDN
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		nieuw: data.nieuw || [],

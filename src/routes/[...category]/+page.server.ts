@@ -31,7 +31,7 @@ type QueryResult = {
 // Define how many posts to show per page
 const pageSize = 10;
 
-export const load: PageServerLoad = async ({ params, url }) => {
+export const load: PageServerLoad = async ({ params, url, setHeaders }) => {
 	const category = decodeURIComponent(params.category).split('/').filter(Boolean).at(-1);
 
 	// Get the current page number from the URL, default to 1
@@ -82,6 +82,12 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	if (page > totalPages && data.totalPosts > 0) {
 		throw error(404, 'Page not found');
 	}
+
+	// Set browser cache headers
+	setHeaders({
+		'cache-control': 'public, max-age=600, s-maxage=3600', // 10min browser, 1hr CDN
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		categoryName: data.name,

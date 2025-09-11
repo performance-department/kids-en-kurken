@@ -30,7 +30,7 @@ type QueryResult = {
 // Define how many posts to show per page
 const pageSize = 10;
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	// Get the search query from URL params
 	const query = url.searchParams.get('q') || '';
 
@@ -100,6 +100,12 @@ export const load: PageServerLoad = async ({ url }) => {
 	if (page > totalPages && data.totalPosts > 0) {
 		throw error(404, 'Page not found');
 	}
+
+	// Set browser cache headers with query parameter variation
+	setHeaders({
+		'cache-control': 'public, max-age=60, s-maxage=300', // 1min browser, 5min CDN
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		posts: data.posts,
