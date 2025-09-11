@@ -7,7 +7,8 @@ const commentSchema = z.object({
 	postId: z.string().min(1, 'Post ID is required'),
 	authorName: z.string().min(1, 'Name is required').max(100, 'Name too long'),
 	authorEmail: z.string().email('Valid email is required'),
-	content: z.string().min(1, 'Content is required').max(5000, 'Content too long')
+	content: z.string().min(1, 'Content is required').max(5000, 'Content too long'),
+	website: z.string().optional() // Honeypot field
 });
 
 const replySchema = commentSchema.extend({
@@ -128,10 +129,17 @@ export async function addComment(formData: FormData) {
 		postId: formData.get('postId') as string,
 		authorName: formData.get('authorName') as string,
 		authorEmail: formData.get('authorEmail') as string,
-		content: formData.get('content') as string
+		content: formData.get('content') as string,
+		website: (formData.get('website') as string) || ''
 	};
 
 	const parsed = commentSchema.parse(data);
+
+	// Honeypot check - if website field is filled, it's likely a bot
+	if (parsed.website && parsed.website.trim() !== '') {
+		throw new Error('Spam detected');
+	}
+
 	const { postId, authorName, authorEmail, content } = parsed;
 
 	const wpId = await getNextWpId(postId);
@@ -164,10 +172,17 @@ export async function addReply(formData: FormData) {
 		parentWpId: formData.get('parentWpId') as string,
 		authorName: formData.get('authorName') as string,
 		authorEmail: formData.get('authorEmail') as string,
-		content: formData.get('content') as string
+		content: formData.get('content') as string,
+		website: (formData.get('website') as string) || ''
 	};
 
 	const parsed = replySchema.parse(data);
+
+	// Honeypot check - if website field is filled, it's likely a bot
+	if (parsed.website && parsed.website.trim() !== '') {
+		throw new Error('Spam detected');
+	}
+
 	const { postId, parentWpId, authorName, authorEmail, content } = parsed;
 
 	const wpId = await getNextWpId(postId);

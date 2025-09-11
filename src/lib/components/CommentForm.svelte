@@ -103,6 +103,12 @@
 			<input type="hidden" name="parentWpId" value={parentComment.wpId} />
 		{/if}
 
+		<!-- Honeypot field - hidden from users but visible to bots -->
+		<div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;">
+			<label for="website">Website (laat dit veld leeg):</label>
+			<input type="text" name="website" id="website" tabindex="-1" autocomplete="off" />
+		</div>
+
 		<div class="space-y-4">
 			<div class="grid gap-4 md:grid-cols-2">
 				<div>
