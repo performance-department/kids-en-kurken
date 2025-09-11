@@ -83,6 +83,7 @@
 				<!-- Instagram -->
 				<a
 					href="https://www.instagram.com/kidsenkurkenmagazine/"
+					aria-label="Volg ons op Instagram"
 					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -95,6 +96,7 @@
 				<!-- Facebook -->
 				<a
 					href="https://www.facebook.com/kidsenkurken/"
+					aria-label="Volg ons op Facebook"
 					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -107,6 +109,7 @@
 				<!-- YouTube -->
 				<a
 					href="https://www.youtube.com/channel/UChzdujpm-327KAI4XqErKUg"
+					aria-label="Volg ons op YouTube"
 					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -134,15 +137,19 @@
 		onkeydown={handleKeydown}
 		role="dialog"
 		aria-labelledby="search-title"
+		tabindex="-1"
 	>
 		<div
 			class="mx-4 w-full max-w-2xl rounded-lg bg-white p-6 shadow-xl"
 			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => e.key === 'Escape' && closeSearchModal()}
+			role="document"
 		>
 			<div class="mb-4 flex items-center justify-between">
 				<h2 id="search-title" class="text-lg font-semibold text-neutral-900">Zoeken</h2>
 				<button
 					onclick={closeSearchModal}
+					aria-label="Sluit zoekvenster"
 					class="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
 				>
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,6 +175,7 @@
 					/>
 					<button
 						type="submit"
+						aria-label="Zoeken"
 						class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 hover:text-mocha-500"
 					>
 						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

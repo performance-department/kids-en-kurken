@@ -12,6 +12,27 @@
 	let { data }: { data: PageData } = $props();
 	const { post, comments, commentCount } = data;
 
+	function extractTextFromPortableText(blocks: any[]): string {
+		if (!blocks) return '';
+
+		return blocks
+			.filter((block) => block._type === 'block')
+			.map(
+				(block) =>
+					block.children
+						?.filter((child: any) => child._type === 'span' && child.text)
+						.map((child: any) => child.text)
+						.join(' ') || ''
+			)
+			.join(' ')
+			.replace(/\s+/g, ' ')
+			.trim();
+	}
+
+	const contentText = extractTextFromPortableText(post.content);
+	const metaDescription =
+		contentText.length > 160 ? contentText.substring(0, 157) + '...' : contentText;
+
 	const components: PortableTextComponents = {
 		types: {
 			image: ImageBlock,
@@ -54,6 +75,11 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>{post.title}</title>
+	<meta name="description" content={metaDescription} />
+</svelte:head>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
 	<nav class="mb-8">

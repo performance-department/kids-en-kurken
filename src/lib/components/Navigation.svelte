@@ -92,6 +92,7 @@
 				<!-- Desktop Search Button -->
 				<button
 					onclick={openSearchModal}
+					aria-label="Zoeken openen"
 					class="ml-4 rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,6 +111,7 @@
 				<!-- Mobile Search Button -->
 				<button
 					onclick={openSearchModal}
+					aria-label="Zoeken openen"
 					class="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,6 +127,7 @@
 				<!-- Hamburger Button -->
 				<button
 					onclick={toggleMobileMenu}
+					aria-label={mobileMenuOpen ? 'Menu sluiten' : 'Menu openen'}
 					class="rounded-lg p-2 text-neutral-700 transition-colors hover:text-mocha-500"
 				>
 					{#if mobileMenuOpen}
