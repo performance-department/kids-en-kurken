@@ -151,7 +151,7 @@
 			<span class="hidden sm:inline">•</span>
 			<span>{post.estimatedReadingTime} min lezen</span>
 			<span class="hidden sm:inline">•</span>
-			<span>{commentCount} reacties</span>
+			<a href="#reacties" class="transition-colors hover:text-mocha-500">{commentCount} reacties</a>
 		</div>
 	</div>
 
@@ -184,7 +184,10 @@
 
 <section class="mx-auto max-w-4xl border-t border-neutral-200 px-4 py-12 sm:px-6 lg:px-8">
 	<div class="mb-8">
-		<h3 class="mb-2 text-[2rem] leading-[1.3] font-bold text-neutral-900">
+		<h3
+			id="reacties"
+			class="mb-2 scroll-mt-16 text-[2rem] leading-[1.3] font-bold text-neutral-900"
+		>
 			Reacties ({commentCount})
 		</h3>
 		<p class="text-[1rem] leading-[1.7] text-neutral-600">

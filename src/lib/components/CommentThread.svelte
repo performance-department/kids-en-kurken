@@ -102,7 +102,7 @@
 					<div class="flex items-center space-x-4">
 						<button
 							onclick={handleReplyClick}
-							class="text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+							class="cursor-pointer text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
 						>
 							{showReplyForm ? 'Annuleren' : 'Beantwoorden'}
 						</button>

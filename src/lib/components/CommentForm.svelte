@@ -165,7 +165,7 @@
 					<button
 						type="button"
 						onclick={onCancel}
-						class="px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-800"
+						class="cursor-pointer px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-800"
 						disabled={isSubmitting}
 					>
 						Annuleren
@@ -173,7 +173,7 @@
 				{/if}
 				<button
 					type="submit"
-					class="rounded-xl bg-mocha-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-mocha-600 disabled:cursor-not-allowed disabled:opacity-50"
+					class="cursor-pointer rounded-xl bg-mocha-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-mocha-600 disabled:cursor-not-allowed disabled:opacity-50"
 					disabled={isSubmitting}
 				>
 					{#if isSubmitting}
