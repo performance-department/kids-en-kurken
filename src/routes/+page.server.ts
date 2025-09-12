@@ -106,7 +106,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 		},
 
 		// Artikelen section - using direct category reference
-		"artikelen": *[_type == "post" && language == "nl" && references("category-2455")] | order(date desc)[0...8]{
+		"artikelen": *[_type == "post" && language == "nl" && references("category-2455")] | order(date desc)[0...6]{
 			_id,
 			title,
 			date,
