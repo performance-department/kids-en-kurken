@@ -66,25 +66,23 @@
 
 <Navigation {openSearchModal} />
 
-<section class="bg-mocha-600 py-4">
+<section class="bg-warm-600 py-4">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex items-center justify-between">
 			<!-- Tagline -->
 			<div class="flex-1">
-				<p class="text-[1rem] font-medium text-white">
-					Blog- en vlogmagazine voor <span class="italic">èchte</span> ouders
-				</p>
+				<p class="text-[1rem] font-medium text-white">Blog- en vlogmagazine voor èchte ouders</p>
 			</div>
 
 			<!-- Social Links -->
 			<div class="flex items-center space-x-4">
-				<span class="hidden text-[0.875rem] font-medium text-mocha-200 sm:block">Volg ons:</span>
+				<span class="hidden text-[0.875rem] font-medium text-warm-200 sm:block">Volg ons:</span>
 
 				<!-- Instagram -->
 				<a
 					href="https://www.instagram.com/kidsenkurkenmagazine/"
 					aria-label="Volg ons op Instagram"
-					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
+					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
@@ -97,7 +95,7 @@
 				<a
 					href="https://www.facebook.com/kidsenkurken/"
 					aria-label="Volg ons op Facebook"
-					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
+					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
@@ -110,7 +108,7 @@
 				<a
 					href="https://www.youtube.com/channel/UChzdujpm-327KAI4XqErKUg"
 					aria-label="Volg ons op YouTube"
-					class="rounded-lg p-2 text-mocha-200 transition-colors hover:bg-mocha-500 hover:text-white"
+					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
@@ -171,12 +169,12 @@
 						type="text"
 						bind:value={searchQuery}
 						placeholder="Zoek naar artikelen..."
-						class="w-full rounded-lg border border-neutral-300 px-4 py-3 pr-12 text-neutral-900 placeholder-neutral-500 focus:border-mocha-500 focus:ring-2 focus:ring-mocha-500/20 focus:outline-none"
+						class="w-full rounded-lg border border-neutral-300 px-4 py-3 pr-12 text-neutral-900 placeholder-neutral-500 focus:border-warm-500 focus:ring-2 focus:ring-warm-500/20 focus:outline-none"
 					/>
 					<button
 						type="submit"
 						aria-label="Zoeken"
-						class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 hover:text-mocha-500"
+						class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 hover:text-warm-500"
 					>
 						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path

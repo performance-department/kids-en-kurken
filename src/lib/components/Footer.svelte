@@ -2,7 +2,7 @@
 	import { footerLinks } from '$lib/data/menu';
 </script>
 
-<footer class="bg-mocha-800 py-12">
+<footer class="bg-neutral-800 py-12">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex flex-col items-center space-y-8">
 			<div class="flex-shrink-0">
@@ -11,12 +11,14 @@
 
 			<nav class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-[0.875rem]">
 				{#each footerLinks as { name, href } (name)}
-					<a {href} class="font-medium text-mocha-200 transition-colors hover:text-white">{name}</a>
+					<a {href} class="font-medium text-neutral-300 transition-colors hover:text-white"
+						>{name}</a
+					>
 				{/each}
 			</nav>
 
 			<div class="text-center">
-				<p class="text-[0.875rem] text-mocha-300">
+				<p class="text-[0.875rem] text-neutral-400">
 					© 2016-{new Date().getFullYear()} Kids en Kurken
 				</p>
 			</div>

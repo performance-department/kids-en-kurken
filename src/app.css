@@ -7,27 +7,29 @@
 @theme {
 	--font-bricolage: 'Bricolage Grotesque Variable', 'sans-serif';
 
-	--color-mocha-50: #faf8f5;
-	--color-mocha-100: #f4f0ea;
-	--color-mocha-200: #e8ddd0;
-	--color-mocha-300: #d9c4ab;
-	--color-mocha-400: #c8a584;
-	--color-mocha-500: #b8875f;
-	--color-mocha-600: #a67c56;
-	--color-mocha-700: #8a6449;
-	--color-mocha-800: #70523f;
-	--color-mocha-900: #5a4334;
-	--color-mocha-950: #2f221a;
+	/* Warm/Teal palette - based on live site #a3c0b8 */
+	--color-warm-50: #f4efe9;
+	--color-warm-100: #eae4dd;
+	--color-warm-200: #d5cfc8;
+	--color-warm-300: #c0b9b2;
+	--color-warm-400: #b5ada6;
+	--color-warm-500: #a3c0b8;
+	--color-warm-600: #8ba59e;
+	--color-warm-700: #7a8f89;
+	--color-warm-800: #6b7c77;
+	--color-warm-900: #5a6863;
+	--color-warm-950: #3a433f;
 
-	--color-rose-50: #fdf2f4;
-	--color-rose-100: #fce8eb;
-	--color-rose-200: #f9d1d7;
-	--color-rose-300: #f4aab5;
-	--color-rose-400: #ec7d8f;
-	--color-rose-500: #dc5a6f;
-	--color-rose-600: #c73d56;
-	--color-rose-700: #a62e46;
-	--color-rose-800: #8b2a3e;
-	--color-rose-900: #762939;
-	--color-rose-950: #42121b;
+	/* Accent/Pink palette - based on live site #b2708a */
+	--color-accent-50: #faf8f9;
+	--color-accent-100: #f4f0f2;
+	--color-accent-200: #e8dfe3;
+	--color-accent-300: #d7c7ce;
+	--color-accent-400: #c498ab;
+	--color-accent-500: #b2708a;
+	--color-accent-600: #9d5a76;
+	--color-accent-700: #834a63;
+	--color-accent-800: #6d3e54;
+	--color-accent-900: #5c364a;
+	--color-accent-950: #351d2a;
 }

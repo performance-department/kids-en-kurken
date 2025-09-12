@@ -26,32 +26,42 @@
 </script>
 
 {#if posts.length > 0}
-	<section class="mb-16 bg-gradient-to-br from-purple-900 to-indigo-900 py-16 text-white">
+	<section class="mb-16 bg-gradient-to-br from-warm-50 to-warm-100 py-16">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<!-- Section Header -->
-			<div class="mb-12 text-center">
-				<div
-					class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm"
+			<div class="mb-8 flex items-center justify-between">
+				<div class="flex items-center gap-3">
+					<StarIcon size={32} class="text-warm-600" />
+					<h2 class="text-3xl font-bold text-neutral-900">{title}</h2>
+				</div>
+				<a
+					href={viewAllLink}
+					class="group flex items-center gap-2 rounded-full bg-warm-200 px-6 py-3 font-medium text-warm-800 transition-all hover:bg-warm-300"
 				>
-					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-						<path d="M8 5v14l11-7z" />
+					Bekijk alles
+					<svg
+						class="h-4 w-4 transition-transform group-hover:translate-x-1"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
-					<span class="font-bold">KIDS EN KURKEN TV</span>
-				</div>
-				<div class="mb-4 flex items-center justify-center gap-4">
-					<StarIcon size={36} class="text-purple-300" />
-					<h2 class="text-4xl font-bold">{title}</h2>
-				</div>
-				<p class="text-lg text-white/80">Video's, vlogs en series voor de hele familie</p>
+				</a>
 			</div>
 
 			<!-- Video Grid -->
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{#each posts as post, index}
-					<article class="group cursor-pointer">
-						<a href={formatPermalink(post.date, post.slug.current)}>
+					<article class="group h-full cursor-pointer">
+						<a href={formatPermalink(post.date, post.slug.current)} class="block h-full">
 							<div
-								class="overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+								class="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
 							>
 								<div class="relative">
 									<div
@@ -73,47 +83,17 @@
 										<div class="absolute inset-0 bg-black/20"></div>
 									</div>
 								</div>
-								<div class="p-6">
-									<div class="mb-3 flex flex-wrap gap-2">
-										{#each post.categories as category}
-											<span
-												class="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
-											>
-												{category.name}
-											</span>
-										{/each}
-									</div>
+								<div class="flex flex-grow flex-col p-6">
 									<h3
-										class="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors group-hover:text-purple-200"
+										class="mb-3 line-clamp-3 flex-grow text-lg font-bold text-neutral-900 transition-colors group-hover:text-warm-600"
 									>
 										{post.title}
 									</h3>
-									<div class="text-sm text-white/70">
-										<span>{timeAgo(post.date)}</span>
-									</div>
 								</div>
 							</div>
 						</a>
 					</article>
 				{/each}
-			</div>
-
-			<!-- View All Button -->
-			<div class="mt-12 text-center">
-				<a
-					href={viewAllLink}
-					class="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-purple-900 transition-all hover:bg-white/90"
-				>
-					Alle video's bekijken
-					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				</a>
 			</div>
 		</div>
 	</section>

@@ -38,7 +38,7 @@
 	</h4>
 
 	{#if isReply && parentComment}
-		<div class="mb-4 rounded-xl border-l-4 border-mocha-300 bg-white p-4">
+		<div class="mb-4 rounded-xl border-l-4 border-warm-300 bg-white p-4">
 			<p class="mb-1 text-sm text-neutral-600">
 				Reageren op <strong>{parentComment.authorName}</strong>:
 			</p>
@@ -117,10 +117,10 @@
 						name="authorName"
 						placeholder="Je naam"
 						oninput={() => clearError('authorName')}
-						class={`w-full rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-mocha-200 ${
+						class={`w-full rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-warm-200 ${
 							fieldErrors.authorName
 								? 'border-red-300 focus:border-red-300'
-								: 'border-neutral-300 focus:border-mocha-300'
+								: 'border-neutral-300 focus:border-warm-300'
 						}`}
 						disabled={isSubmitting}
 						required
@@ -135,10 +135,10 @@
 						name="authorEmail"
 						placeholder="Je e-mailadres"
 						oninput={() => clearError('authorEmail')}
-						class={`w-full rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-mocha-200 ${
+						class={`w-full rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-warm-200 ${
 							fieldErrors.authorEmail
 								? 'border-red-300 focus:border-red-300'
-								: 'border-neutral-300 focus:border-mocha-300'
+								: 'border-neutral-300 focus:border-warm-300'
 						}`}
 						disabled={isSubmitting}
 						required
@@ -154,10 +154,10 @@
 					placeholder={isReply ? 'Deel je reactie...' : 'Deel je gedachten en ervaringen...'}
 					rows="4"
 					oninput={() => clearError('content')}
-					class={`w-full resize-none rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-mocha-200 ${
+					class={`w-full resize-none rounded-xl border px-4 py-3 transition-colors outline-none focus:ring-2 focus:ring-warm-200 ${
 						fieldErrors.content
 							? 'border-red-300 focus:border-red-300'
-							: 'border-neutral-300 focus:border-mocha-300'
+							: 'border-neutral-300 focus:border-warm-300'
 					}`}
 					disabled={isSubmitting}
 					required
@@ -179,7 +179,7 @@
 				{/if}
 				<button
 					type="submit"
-					class="cursor-pointer rounded-xl bg-mocha-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-mocha-600 disabled:cursor-not-allowed disabled:opacity-50"
+					class="cursor-pointer rounded-xl bg-warm-500 px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-warm-600 disabled:cursor-not-allowed disabled:opacity-50"
 					disabled={isSubmitting}
 				>
 					{#if isSubmitting}

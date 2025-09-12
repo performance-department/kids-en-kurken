@@ -54,35 +54,18 @@
 						/>
 					</div>
 					<div class="p-6 lg:p-8">
-						<div class="mb-4 flex flex-wrap gap-2">
-							{#each posts[0].categories as category (category.name)}
-								<span
-									class="inline-block rounded-full bg-rose-100 px-3 py-1 text-[0.75rem] leading-[1.4] font-medium text-rose-700"
-								>
-									{category.name}
-								</span>
-							{/each}
-						</div>
 						<h2
-							class="mb-6 text-[1.5rem] leading-[1.3] font-bold text-neutral-900 transition-colors group-hover:text-rose-600 lg:text-[1.875rem] lg:leading-[1.2]"
+							class="mb-6 text-[1.75rem] leading-[1.2] font-bold text-neutral-900 transition-colors group-hover:text-accent-600 lg:text-[2.25rem] lg:leading-[1.1]"
 						>
 							{posts[0].title}
 						</h2>
 						<div class="flex items-center justify-between">
 							<div class="flex items-center space-x-3">
-								<div class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-200">
-									<span class="text-xs font-medium text-rose-700">R</span>
+								<div class="flex h-8 w-8 items-center justify-center rounded-full bg-warm-300">
+									<span class="text-xs font-medium text-warm-700">R</span>
 								</div>
-								<div class="text-[0.875rem] text-neutral-500">
+								<div class="text-[0.875rem] text-neutral-600">
 									<span class="font-medium text-neutral-700">Redactie</span>
-									<span class="mx-2">•</span>
-									<span
-										>{new Date(posts[0].date).toLocaleDateString('nl-NL', {
-											day: 'numeric',
-											month: 'long',
-											year: 'numeric'
-										})}</span
-									>
 								</div>
 							</div>
 							<span class="text-[0.875rem] text-neutral-500"
@@ -125,17 +108,8 @@
 							/>
 						</div>
 						<div class="flex flex-grow flex-col p-6">
-							<div class="mb-3 flex flex-wrap gap-2">
-								{#each post.categories as category (category.name)}
-									<span
-										class="inline-block rounded-full bg-neutral-100 px-3 py-1 text-[0.75rem] leading-[1.4] font-medium text-neutral-700"
-									>
-										{category.name}
-									</span>
-								{/each}
-							</div>
 							<h3
-								class="mb-4 line-clamp-3 flex-grow text-[1.25rem] leading-[1.3] font-bold text-neutral-900 transition-colors group-hover:text-rose-600"
+								class="mb-4 line-clamp-4 flex-grow text-[1.375rem] leading-[1.2] font-bold text-neutral-900 transition-colors group-hover:text-accent-600"
 							>
 								{post.title}
 							</h3>
@@ -143,12 +117,12 @@
 								class="mt-auto flex items-center justify-between text-[0.75rem] text-neutral-500"
 							>
 								<div class="flex items-center space-x-2">
-									<div class="flex h-6 w-6 items-center justify-center rounded-full bg-rose-200">
-										<span class="text-[0.625rem] font-medium text-rose-700">R</span>
+									<div class="flex h-6 w-6 items-center justify-center rounded-full bg-warm-300">
+										<span class="text-[0.625rem] font-medium text-warm-700">R</span>
 									</div>
 									<span>Redactie</span>
 								</div>
-								<span>{timeAgo(post.date)}</span>
+								<span>{post.estimatedReadingTime} min</span>
 							</div>
 						</div>
 					</div>

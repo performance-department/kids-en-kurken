@@ -32,14 +32,14 @@
 			<div class="mb-8 flex items-center justify-between">
 				<div>
 					<div class="flex items-center gap-3">
-						<StarIcon size={32} class="text-mocha-600" />
+						<StarIcon size={32} class="text-warm-600" />
 						<h2 class="text-3xl font-bold text-neutral-900">{title}</h2>
 					</div>
 					<p class="text-neutral-600">Ontdek inspirerende ouders in onze community</p>
 				</div>
 				<a
 					href={viewAllLink}
-					class="hidden items-center gap-2 rounded-full border-2 border-mocha-200 px-6 py-3 font-medium text-mocha-700 transition-all hover:bg-mocha-50 sm:flex"
+					class="hidden items-center gap-2 rounded-full border-2 border-warm-200 px-6 py-3 font-medium text-warm-700 transition-all hover:bg-warm-100 sm:flex"
 				>
 					Bekijk alles
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,10 +56,10 @@
 			<!-- Posts Horizontal Scroll -->
 			<div class="scrollbar-hide flex gap-6 overflow-x-auto pb-4">
 				{#each posts as post}
-					<article class="group w-80 flex-shrink-0 cursor-pointer">
-						<a href={formatPermalink(post.date, post.slug.current)}>
+					<article class="group h-full w-80 flex-shrink-0 cursor-pointer">
+						<a href={formatPermalink(post.date, post.slug.current)} class="block h-full">
 							<div
-								class="overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+								class="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
 							>
 								<div class="relative">
 									<div
@@ -80,23 +80,13 @@
 										/>
 									</div>
 								</div>
-								<div class="px-6 pt-6 pb-6">
-									<div class="mb-2 flex flex-wrap gap-2">
-										{#each post.categories as category}
-											<span
-												class="inline-block rounded-full bg-mocha-100 px-3 py-1 text-xs font-medium text-mocha-700"
-											>
-												{category.name}
-											</span>
-										{/each}
-									</div>
+								<div class="flex flex-grow flex-col px-6 pt-6 pb-6">
 									<h3
-										class="mb-3 line-clamp-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-mocha-600"
+										class="mb-3 line-clamp-3 flex-grow text-lg font-bold text-neutral-900 transition-colors group-hover:text-warm-600"
 									>
 										{post.title}
 									</h3>
-									<div class="flex items-center justify-between text-sm text-neutral-500">
-										<span>{timeAgo(post.date)}</span>
+									<div class="mt-auto flex items-center justify-between text-sm text-neutral-500">
 										<span>{post.estimatedReadingTime} min lezen</span>
 									</div>
 								</div>
@@ -110,7 +100,7 @@
 			<div class="mt-6 text-center sm:hidden">
 				<a
 					href={viewAllLink}
-					class="inline-flex items-center gap-2 rounded-full bg-mocha-100 px-6 py-3 font-medium text-mocha-700"
+					class="inline-flex items-center gap-2 rounded-full bg-warm-200 px-6 py-3 font-medium text-warm-800"
 				>
 					Bekijk alles
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

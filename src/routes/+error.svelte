@@ -6,7 +6,7 @@
 <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
 	<main class="mx-auto flex w-full max-w-xl flex-col">
 		<div class="text-center">
-			<p class="text-[1rem] leading-[1.5] font-semibold text-rose-600">
+			<p class="text-[1rem] leading-[1.5] font-semibold text-accent-600">
 				{page.status}
 			</p>
 			<h1
@@ -28,7 +28,7 @@
 			<div class="mt-10">
 				<a
 					href="/"
-					class="rounded-xl bg-mocha-500 px-6 py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-mocha-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mocha-600"
+					class="rounded-xl bg-warm-500 px-6 py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-warm-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-600"
 					>Terug naar de homepage</a
 				>
 			</div>

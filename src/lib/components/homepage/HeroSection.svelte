@@ -57,21 +57,12 @@
 									class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
 								></div>
 								<div class="absolute right-6 bottom-6 left-6">
-									<div class="mb-4 flex flex-wrap gap-2">
-										{#each featuredPost.categories as category}
-											<span
-												class="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-neutral-800 backdrop-blur-sm"
-											>
-												{category.name}
-											</span>
-										{/each}
-									</div>
-									<h1 class="mb-4 text-3xl leading-tight font-bold text-white lg:text-4xl">
+									<h1
+										class="mb-4 line-clamp-4 text-3xl leading-tight font-bold text-white lg:text-4xl"
+									>
 										{featuredPost.title}
 									</h1>
 									<div class="flex items-center text-white/90">
-										<span class="text-sm">{timeAgo(featuredPost.date)}</span>
-										<span class="mx-3">•</span>
 										<span class="text-sm">{featuredPost.estimatedReadingTime} min lezen</span>
 									</div>
 								</div>
@@ -105,11 +96,11 @@
 									</div>
 									<div class="min-w-0 flex-1">
 										<h3
-											class="mb-2 line-clamp-2 text-sm leading-tight font-bold text-neutral-900 group-hover:text-mocha-600"
+											class="mb-2 line-clamp-3 text-sm leading-tight font-bold text-neutral-900 group-hover:text-warm-600"
 										>
 											{post.title}
 										</h3>
-										<p class="text-xs text-neutral-500">{timeAgo(post.date)}</p>
+										<p class="text-xs text-neutral-500">{post.estimatedReadingTime} min</p>
 									</div>
 								</div>
 							</a>

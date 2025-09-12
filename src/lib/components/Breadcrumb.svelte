@@ -13,7 +13,7 @@
 		{#each items as item, index}
 			<li>
 				{#if item.href}
-					<a href={item.href} class="transition-colors hover:text-mocha-500">{item.label}</a>
+					<a href={item.href} class="transition-colors hover:text-warm-500">{item.label}</a>
 				{:else}
 					<span class="text-neutral-700">{item.label}</span>
 				{/if}

@@ -22,7 +22,7 @@
 	<div class="mb-12">
 		<div class="mb-6 flex items-center space-x-3">
 			<span
-				class="inline-block rounded-full bg-rose-100 px-4 py-2 text-[0.875rem] leading-[1.5] font-medium text-rose-700"
+				class="inline-block rounded-full bg-accent-100 px-4 py-2 text-[0.875rem] leading-[1.5] font-medium text-accent-700"
 			>
 				Categorie
 			</span>

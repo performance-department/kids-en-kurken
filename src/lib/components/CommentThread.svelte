@@ -74,9 +74,9 @@
 	>
 		<div class="flex items-start space-x-4">
 			<div
-				class={`flex ${avatarSize} flex-shrink-0 items-center justify-center rounded-full bg-mocha-200`}
+				class={`flex ${avatarSize} flex-shrink-0 items-center justify-center rounded-full bg-warm-200`}
 			>
-				<span class={`${textSize} font-medium text-mocha-700`}>
+				<span class={`${textSize} font-medium text-warm-700`}>
 					{getInitials(comment.authorName || 'Anonymous')}
 				</span>
 			</div>
@@ -102,7 +102,7 @@
 					<div class="flex items-center space-x-4">
 						<button
 							onclick={handleReplyClick}
-							class="cursor-pointer text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-rose-500"
+							class="cursor-pointer text-[0.875rem] leading-[1.5] text-neutral-500 transition-colors hover:text-accent-500"
 						>
 							{showReplyForm ? 'Annuleren' : 'Beantwoorden'}
 						</button>

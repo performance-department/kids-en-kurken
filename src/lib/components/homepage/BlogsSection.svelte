@@ -31,12 +31,12 @@
 			<!-- Section Header -->
 			<div class="mb-8 flex items-center justify-between">
 				<div class="flex items-center gap-3">
-					<StarIcon size={32} class="text-mocha-600" />
+					<StarIcon size={32} class="text-warm-600" />
 					<h2 class="text-3xl font-bold text-neutral-900">{title}</h2>
 				</div>
 				<a
 					href={viewAllLink}
-					class="group flex items-center gap-2 rounded-full bg-mocha-100 px-6 py-3 font-medium text-mocha-700 transition-all hover:bg-mocha-200"
+					class="group flex items-center gap-2 rounded-full bg-warm-200 px-6 py-3 font-medium text-warm-800 transition-all hover:bg-warm-300"
 				>
 					Bekijk alles
 					<svg
@@ -58,10 +58,12 @@
 			<!-- Posts Grid -->
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 				{#each posts as post, index}
-					<article class="group cursor-pointer {index < 2 ? 'md:col-span-1 lg:col-span-2' : ''}">
-						<a href={formatPermalink(post.date, post.slug.current)}>
+					<article
+						class="group h-full cursor-pointer {index < 2 ? 'md:col-span-1 lg:col-span-2' : ''}"
+					>
+						<a href={formatPermalink(post.date, post.slug.current)} class="block h-full">
 							<div
-								class="overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+								class="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
 							>
 								<div
 									class="relative {index < 2
@@ -87,25 +89,15 @@
 										></div>
 									{/if}
 								</div>
-								<div class="p-6">
-									<div class="mb-3 flex flex-wrap gap-2">
-										{#each post.categories as category}
-											<span
-												class="inline-block rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-700"
-											>
-												{category.name}
-											</span>
-										{/each}
-									</div>
+								<div class="flex flex-grow flex-col p-6">
 									<h3
-										class="mb-3 line-clamp-2 {index < 2
+										class="mb-3 line-clamp-3 flex-grow {index < 2
 											? 'text-lg'
-											: 'text-base'} font-bold text-neutral-900 transition-colors group-hover:text-mocha-600"
+											: 'text-base'} font-bold text-neutral-900 transition-colors group-hover:text-warm-600"
 									>
 										{post.title}
 									</h3>
-									<div class="flex items-center justify-between text-xs text-neutral-500">
-										<span>{timeAgo(post.date)}</span>
+									<div class="mt-auto flex items-center justify-between text-xs text-neutral-500">
 										<span>{post.estimatedReadingTime} min lezen</span>
 									</div>
 								</div>

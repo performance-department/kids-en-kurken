@@ -50,14 +50,14 @@
 					{#if item.type === 'link'}
 						<a
 							href={item.href}
-							class="px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-mocha-500"
+							class="px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-warm-500"
 						>
 							{item.title}
 						</a>
 					{:else if item.type === 'dropdown'}
 						<div class="group relative">
 							<button
-								class="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-mocha-500"
+								class="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-warm-500"
 							>
 								<span>{item.title}</span>
 								<svg
@@ -84,7 +84,7 @@
 									{#each item.children as child (child.title)}
 										<a
 											href={child.href}
-											class="block px-4 py-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-700"
+											class="block px-4 py-2 text-neutral-700 transition-colors hover:bg-warm-50 hover:text-warm-700"
 										>
 											{child.title}
 										</a>
@@ -99,7 +99,7 @@
 				<button
 					onclick={openSearchModal}
 					aria-label="Zoeken openen"
-					class="ml-4 rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
+					class="ml-4 rounded-lg p-2 text-neutral-700 transition-colors hover:bg-warm-50 hover:text-warm-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
@@ -118,7 +118,7 @@
 				<button
 					onclick={openSearchModal}
 					aria-label="Zoeken openen"
-					class="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-500"
+					class="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-warm-50 hover:text-warm-500"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
@@ -134,7 +134,7 @@
 				<button
 					onclick={toggleMobileMenu}
 					aria-label={mobileMenuOpen ? 'Menu sluiten' : 'Menu openen'}
-					class="rounded-lg p-2 text-neutral-700 transition-colors hover:text-mocha-500"
+					class="rounded-lg p-2 text-neutral-700 transition-colors hover:text-warm-500"
 				>
 					{#if mobileMenuOpen}
 						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,7 +169,7 @@
 						<a
 							href={item.href}
 							onclick={closeMobileMenu}
-							class="block rounded-lg px-4 py-3 font-medium text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-700"
+							class="block rounded-lg px-4 py-3 font-medium text-neutral-700 transition-colors hover:bg-warm-50 hover:text-warm-700"
 						>
 							{item.title}
 						</a>
@@ -178,7 +178,7 @@
 							<!-- Dropdown Trigger -->
 							<button
 								onclick={() => toggleMobileDropdown(item.title)}
-								class="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium text-neutral-700 transition-colors hover:bg-mocha-50 hover:text-mocha-700"
+								class="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium text-neutral-700 transition-colors hover:bg-warm-50 hover:text-warm-700"
 							>
 								<span>{item.title}</span>
 								<svg
@@ -205,7 +205,7 @@
 										<a
 											href={child.href}
 											onclick={closeMobileMenu}
-											class="block rounded-lg px-4 py-2 text-neutral-600 transition-colors hover:bg-mocha-50 hover:text-mocha-700"
+											class="block rounded-lg px-4 py-2 text-neutral-600 transition-colors hover:bg-warm-50 hover:text-warm-700"
 										>
 											{child.title}
 										</a>

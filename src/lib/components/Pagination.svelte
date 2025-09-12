@@ -71,8 +71,8 @@
 					href={createPageUrl(link)}
 					class="flex h-10 w-10 items-center justify-center rounded-lg font-medium transition-colors {currentPage ===
 					link
-						? 'bg-mocha-500 text-white'
-						: 'bg-neutral-100 text-neutral-700 hover:bg-mocha-100 hover:text-mocha-700'}"
+						? 'bg-warm-600 text-white'
+						: 'bg-neutral-100 text-neutral-700 hover:bg-warm-100 hover:text-warm-700'}"
 				>
 					{link}
 				</a>
@@ -83,7 +83,7 @@
 
 		<a
 			href={currentPage < totalPages ? createPageUrl(currentPage + 1) : '#'}
-			class="rounded-lg bg-mocha-100 px-4 py-2 text-mocha-500 transition-colors hover:bg-mocha-200 {currentPage ===
+			class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 {currentPage ===
 			totalPages
 				? 'cursor-not-allowed opacity-50'
 				: ''}"

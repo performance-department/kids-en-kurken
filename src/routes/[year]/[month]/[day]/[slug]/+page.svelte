@@ -97,7 +97,7 @@
 		<ol
 			class="flex flex-wrap items-center space-x-2 gap-y-1 text-[0.875rem] leading-[1.5] text-neutral-500"
 		>
-			<li><a href="/" class="transition-colors hover:text-mocha-500">Home</a></li>
+			<li><a href="/" class="transition-colors hover:text-warm-500">Home</a></li>
 			<li>/</li>
 			<li class="text-neutral-700">{post.title}</li>
 		</ol>
@@ -119,7 +119,7 @@
 			<div class="mb-4 flex flex-wrap gap-2">
 				{#each post.categories as category (category.name)}
 					<span
-						class="inline-block rounded-full bg-rose-100 px-4 py-2 text-[0.875rem] leading-[1.5] font-medium text-rose-700"
+						class="inline-block rounded-full bg-accent-100 px-4 py-2 text-[0.875rem] leading-[1.5] font-medium text-accent-700"
 					>
 						{category.name}
 					</span>
@@ -135,8 +135,8 @@
 			class="flex flex-wrap items-center space-x-6 gap-y-2 text-[0.875rem] leading-[1.5] text-neutral-500"
 		>
 			<div class="flex items-center space-x-2">
-				<div class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-200">
-					<span class="text-xs font-medium text-rose-700">R</span>
+				<div class="flex h-8 w-8 items-center justify-center rounded-full bg-accent-200">
+					<span class="text-xs font-medium text-accent-700">R</span>
 				</div>
 				<span>Door Redactie</span>
 			</div>
@@ -151,7 +151,7 @@
 			<span class="hidden sm:inline">•</span>
 			<span>{post.estimatedReadingTime} min lezen</span>
 			<span class="hidden sm:inline">•</span>
-			<a href="#reacties" class="transition-colors hover:text-mocha-500">{commentCount} reacties</a>
+			<a href="#reacties" class="transition-colors hover:text-warm-500">{commentCount} reacties</a>
 		</div>
 	</div>
 
@@ -169,7 +169,7 @@
 					{#each post.tags as tag (tag.name)}
 						<a
 							href="/tag/{tag.slug.current}"
-							class="inline-flex items-center rounded-md border border-neutral-200 bg-neutral-50 px-3 py-1 text-[0.75rem] font-medium text-neutral-600 transition-colors hover:border-mocha-200 hover:bg-mocha-50 hover:text-mocha-700"
+							class="inline-flex items-center rounded-md border border-neutral-200 bg-neutral-50 px-3 py-1 text-[0.75rem] font-medium text-neutral-600 transition-colors hover:border-warm-200 hover:bg-warm-50 hover:text-warm-700"
 						>
 							#{tag.name.toLowerCase()}
 						</a>
