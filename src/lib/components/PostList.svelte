@@ -42,12 +42,14 @@
 						class="h-64 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200 lg:h-80"
 					>
 						<img
-							src={urlFor(posts[0].featuredMedia)
-								.width(400)
-								.height(250)
-								.auto('format')
-								.fit('crop')
-								.url()}
+							src={posts[0].featuredMedia?.asset
+								? urlFor(posts[0].featuredMedia)
+										.width(400)
+										.height(250)
+										.auto('format')
+										.fit('crop')
+										.url()
+								: 'https://placehold.co/400x250?text=Kids en Kurken'}
 							alt="Featured artikel"
 							class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 							style={`view-transition-name:${posts[0]._id}`}

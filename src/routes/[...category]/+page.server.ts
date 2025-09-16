@@ -39,7 +39,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders }) => {
 
 	// Calculate the start and end indices for the GROQ query
 	const start = (page - 1) * pageSize;
-	const end = page * pageSize;
+	const end = start + pageSize - 1;
 
 	const groqQuery = `
     *[_type == "category" && slug.current == $slug][0]{
@@ -62,7 +62,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders }) => {
         },
         "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
       },
-      "totalPosts": count(*[_type == "post" && references(^._id)])
+      "totalPosts": count(*[_type == "post" && language == "nl" && references(^._id)])
     }
   `;
 

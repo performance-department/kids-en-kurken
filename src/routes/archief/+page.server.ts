@@ -37,7 +37,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 	// Calculate the start and end indices for the GROQ query
 	const start = (page - 1) * pageSize;
-	const end = page * pageSize;
+	const end = start + pageSize - 1;
 
 	const groqQuery = `
 	{
@@ -61,7 +61,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
   "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
   },
 
-  "totalPosts": count(*[_type == "post"])
+  "totalPosts": count(*[_type == "post" && language == "nl"])
 }
 
   `;
