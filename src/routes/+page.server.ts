@@ -157,10 +157,11 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	}>(groqQuery);
 
 	// Set browser cache headers
-	setHeaders({
-		'cache-control': 'public, max-age=300, s-maxage=1800', // 5min browser, 30min CDN
-		vary: 'Accept-Encoding'
-	});
+	// 5min browser, 30min CDN
+	// setHeaders({
+	// 	'cache-control': 'public, max-age=300, s-maxage=1800',
+	// 	vary: 'Accept-Encoding'
+	// });
 
 	return {
 		nieuw: data.nieuw || [],
