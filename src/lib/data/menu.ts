@@ -70,7 +70,6 @@ export const menuItems = [
 		children: [
 			{ title: 'Over kids en kurken', href: '/over' },
 			{ title: 'Adverteren', href: '/adverteren' },
-			{ title: 'Bloggers', href: '/bloggers' },
 			{ title: 'Vacatures', href: '/vacatures' },
 			{ title: 'Contact', href: '/contact' }
 		]
