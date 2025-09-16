@@ -148,7 +148,7 @@
 				<button
 					onclick={closeSearchModal}
 					aria-label="Sluit zoekvenster"
-					class="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
+					class="cursor-pointer rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
 				>
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
@@ -174,7 +174,7 @@
 					<button
 						type="submit"
 						aria-label="Zoeken"
-						class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 hover:text-warm-500"
+						class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer rounded-lg p-2 text-neutral-500 hover:text-warm-500"
 					>
 						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
