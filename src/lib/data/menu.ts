@@ -82,6 +82,6 @@ export const footerLinks = [
 	{ name: 'Voorwaarden', href: '/voorwaarden' },
 	{ name: 'Disclaimer', href: '/disclaimer' },
 	{ name: 'Huisregels', href: '/huisregels' },
-	{ name: 'Privacy & cookiebeleid', href: '#' },
+	{ name: 'Privacy & cookiebeleid', href: '/privacybeleid' },
 	{ name: 'Cookieinstellingen', href: '#' }
 ];
