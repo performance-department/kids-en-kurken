@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
-	import { formatPermalink, timeAgo } from '$lib/utils/date';
+	import { formatPermalink } from '$lib/utils/date';
 	import { StarIcon } from '$lib';
 
 	interface PostListItem {
