@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const groqQuery = `
-		*[_type == "page" && _id == "d85479fa-e557-40c4-8650-86bebfdd2f81"][0]{
+		*[_type == "page" && _id == "c762c5e5-b390-4a57-8b22-cd8494761a7c"][0]{
 			_id,
 			title,
 			content
