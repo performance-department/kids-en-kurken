@@ -1,20 +1,8 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink } from '$lib/utils/date';
-	import { StarIcon } from '$lib';
-
-	interface PostListItem {
-		_id: string;
-		title: string;
-		date: string;
-		slug: { current: string };
-		categories: { name: string; slug: { current: string } }[];
-		featuredMedia?: {
-			asset: { url: string; metadata: { lqip: string } };
-			alt?: string;
-		};
-		estimatedReadingTime: number;
-	}
+	import SectionHeader from '../SectionHeader.svelte';
+	import type { PostListItem } from '$lib/types/components';
 
 	interface Props {
 		posts: PostListItem[];
@@ -29,19 +17,12 @@
 {#if featuredPost}
 	<section class="mb-16 pt-8">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<!-- Section Header -->
-			<div class="mb-8 flex items-center justify-between">
-				<div class="flex items-center gap-3">
-					<StarIcon size={32} class="text-neutral-700" />
-					<h2 class="text-3xl font-bold text-neutral-900">Nieuw</h2>
-				</div>
-				<a
-					href="/archief"
-					class="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900"
-				>
-					Bekijk alle →
-				</a>
-			</div>
+			<SectionHeader
+				title="Nieuw"
+				iconClass="text-neutral-700"
+				viewAllLink="/archief"
+				viewAllText="Bekijk alle →"
+			/>
 			<div class="grid gap-8 lg:grid-cols-3">
 				<!-- Main Featured Post -->
 				<article class="group cursor-pointer lg:col-span-2">

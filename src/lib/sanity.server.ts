@@ -1,8 +1,5 @@
 import { createClient } from '@sanity/client';
-import {
-	PUBLIC_SANITY_DATASET,
-	PUBLIC_SANITY_PROJECT_ID
-} from '$env/static/public';
+import { PUBLIC_SANITY_DATASET, PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import { SANITY_WRITE_TOKEN } from '$env/static/private';
 
 // Write client for server-side operations (comments, etc.)
