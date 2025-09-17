@@ -84,6 +84,7 @@
 						href={social.url}
 						aria-label={social.ariaLabel}
 						class="rounded-lg p-2 text-white transition-colors hover:bg-warm-500"
+						target="_blank"
 					>
 						{@html social.icon}
 					</a>
