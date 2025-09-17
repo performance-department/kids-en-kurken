@@ -132,16 +132,16 @@
 	<div
 		class="fixed inset-0 z-50 flex items-start justify-center bg-black/50 pt-16"
 		onclick={closeSearchModal}
-		onkeydown={handleKeydown}
-		role="dialog"
-		aria-labelledby="search-title"
-		tabindex="-1"
+		role="presentation"
 	>
 		<div
 			class="mx-4 w-full max-w-2xl rounded-lg bg-white p-6 shadow-xl"
+			role="dialog"
+			aria-labelledby="search-title"
+			aria-modal="true"
+			tabindex="-1"
+			onkeydown={handleKeydown}
 			onclick={(e) => e.stopPropagation()}
-			onkeydown={(e) => e.key === 'Escape' && closeSearchModal()}
-			role="document"
 		>
 			<div class="mb-4 flex items-center justify-between">
 				<h2 id="search-title" class="text-lg font-semibold text-neutral-900">Zoeken</h2>

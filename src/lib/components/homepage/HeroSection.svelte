@@ -43,12 +43,14 @@
 						>
 							<div class="relative h-80 overflow-hidden lg:h-96">
 								<img
-									src={urlFor(featuredPost.featuredMedia)
-										.width(800)
-										.height(400)
-										.auto('format')
-										.fit('crop')
-										.url()}
+									src={featuredPost.featuredMedia?.asset
+										? urlFor(featuredPost.featuredMedia)
+												.width(800)
+												.height(400)
+												.auto('format')
+												.fit('crop')
+												.url()
+										: 'https://placehold.co/800x400?text=Kids en Kurken'}
 									alt={featuredPost.title}
 									class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
 									style={`view-transition-name:${featuredPost._id}`}
@@ -73,7 +75,7 @@
 
 				<!-- Side Posts -->
 				<div class="space-y-6">
-					{#each sidePosts as post}
+					{#each sidePosts as post (post._id)}
 						<article class="group cursor-pointer">
 							<a href={formatPermalink(post.date, post.slug.current)}>
 								<div

@@ -57,7 +57,7 @@
 
 			<!-- Posts Grid -->
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-				{#each posts as post, index}
+				{#each posts as post, index (post._id)}
 					<article
 						class="group h-full cursor-pointer {index < 2 ? 'md:col-span-1 lg:col-span-2' : ''}"
 					>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { SvelteURLSearchParams } from 'svelte/reactivity';
 
 	interface Props {
 		currentPage: number;
@@ -10,7 +11,7 @@
 
 	// Helper function to create URL with preserved search params
 	function createPageUrl(pageNumber: number): string {
-		const searchParams = new URLSearchParams($page.url.searchParams);
+		const searchParams = new SvelteURLSearchParams($page.url.searchParams);
 		searchParams.set('page', pageNumber.toString());
 		return `?${searchParams.toString()}`;
 	}
@@ -50,22 +51,32 @@
 </script>
 
 {#if totalPages > 1}
-	<div class="flex items-center justify-center space-x-2">
-		<a
-			href={currentPage > 1 ? createPageUrl(currentPage - 1) : '#'}
-			class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 {currentPage ===
-			1
-				? 'cursor-not-allowed opacity-50'
-				: ''}"
-			aria-disabled={currentPage === 1}
-		>
-			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
-				></path>
-			</svg>
-		</a>
+	<nav aria-label="Paginatie navigatie" class="flex items-center justify-center space-x-2">
+		{#if currentPage > 1}
+			<a
+				href={createPageUrl(currentPage - 1)}
+				class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200"
+				aria-label="Vorige pagina"
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
+					></path>
+				</svg>
+			</a>
+		{:else}
+			<button
+				disabled
+				class="cursor-not-allowed rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 opacity-50"
+				aria-label="Vorige pagina (uitgeschakeld)"
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
+					></path>
+				</svg>
+			</button>
+		{/if}
 
-		{#each paginationLinks as link}
+		{#each paginationLinks as link (link)}
 			{#if typeof link === 'number'}
 				<a
 					href={createPageUrl(link)}
@@ -73,6 +84,8 @@
 					link
 						? 'bg-warm-600 text-white'
 						: 'bg-neutral-100 text-neutral-700 hover:bg-warm-100 hover:text-warm-700'}"
+					aria-label="Ga naar pagina {link}"
+					aria-current={currentPage === link ? 'page' : undefined}
 				>
 					{link}
 				</a>
@@ -81,18 +94,28 @@
 			{/if}
 		{/each}
 
-		<a
-			href={currentPage < totalPages ? createPageUrl(currentPage + 1) : '#'}
-			class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200 {currentPage ===
-			totalPages
-				? 'cursor-not-allowed opacity-50'
-				: ''}"
-			aria-disabled={currentPage === totalPages}
-		>
-			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
-				></path>
-			</svg>
-		</a>
-	</div>
+		{#if currentPage < totalPages}
+			<a
+				href={createPageUrl(currentPage + 1)}
+				class="rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 transition-colors hover:bg-neutral-200"
+				aria-label="Volgende pagina"
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+					></path>
+				</svg>
+			</a>
+		{:else}
+			<button
+				disabled
+				class="cursor-not-allowed rounded-lg bg-neutral-100 px-4 py-2 text-neutral-500 opacity-50"
+				aria-label="Volgende pagina (uitgeschakeld)"
+			>
+				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+					></path>
+				</svg>
+			</button>
+		{/if}
+	</nav>
 {/if}
