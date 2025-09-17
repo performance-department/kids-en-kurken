@@ -9,6 +9,7 @@
 	import Ad from '$lib/components/Ad.svelte';
 	import CommentForm from '$lib/components/CommentForm.svelte';
 	import CommentThread from '$lib/components/CommentThread.svelte';
+	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
 	import type { Comment } from '$lib/commentService.js';
 	import { onMount } from 'svelte';
 
@@ -85,6 +86,8 @@
 		// Form actions will trigger a page reload which updates the comments automatically
 		// No need to manually update state since SvelteKit handles this
 	}
+
+	const breadcrumbItems = [{ label: 'Home', href: '/' }, { label: post.title }];
 </script>
 
 <svelte:head>
@@ -93,15 +96,7 @@
 </svelte:head>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-	<nav class="mb-8">
-		<ol
-			class="flex flex-wrap items-center space-x-2 gap-y-1 text-[0.875rem] leading-[1.5] text-neutral-500"
-		>
-			<li><a href="/" class="transition-colors hover:text-warm-500">Home</a></li>
-			<li>/</li>
-			<li class="text-neutral-700">{post.title}</li>
-		</ol>
-	</nav>
+	<Breadcrumb items={breadcrumbItems} />
 
 	{#if post.featuredMedia}
 		<div class="mb-8">

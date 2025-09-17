@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
+	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
 
 	export let data: PageData;
 	const { page } = data;
+
+	const breadcrumbItems = [{ label: 'Home', href: '/' }, { label: page.title }];
 </script>
 
 <svelte:head>
@@ -12,15 +15,7 @@
 </svelte:head>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-	<nav class="mb-8">
-		<ol
-			class="flex flex-wrap items-center space-x-2 gap-y-1 text-[0.875rem] leading-[1.5] text-neutral-500"
-		>
-			<li><a href="/" class="transition-colors hover:text-warm-500">Home</a></li>
-			<li>/</li>
-			<li class="text-neutral-700">{page.title}</li>
-		</ol>
-	</nav>
+	<Breadcrumb items={breadcrumbItems} />
 
 	<div class="mb-8">
 		<h1
