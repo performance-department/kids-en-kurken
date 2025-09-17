@@ -19,6 +19,9 @@
 	/>
 </svelte:head>
 
+<!-- Hidden H1 for accessibility -->
+<h1 class="sr-only">Kids en Kurken</h1>
+
 <!-- Hero Section with Latest Posts -->
 <HeroSection posts={data.nieuw} />
 
