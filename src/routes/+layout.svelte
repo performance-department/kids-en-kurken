@@ -76,13 +76,13 @@
 
 			<!-- Social Links -->
 			<div class="flex items-center space-x-4">
-				<span class="hidden text-[0.875rem] font-medium text-warm-200 sm:block">Volg ons:</span>
+				<span class="hidden text-[0.875rem] font-medium text-white sm:block">Volg ons:</span>
 
 				<!-- Instagram -->
 				<a
 					href="https://www.instagram.com/kidsenkurkenmagazine/"
 					aria-label="Volg ons op Instagram"
-					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
+					class="rounded-lg p-2 text-white transition-colors hover:bg-warm-500"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
@@ -95,7 +95,7 @@
 				<a
 					href="https://www.facebook.com/kidsenkurken/"
 					aria-label="Volg ons op Facebook"
-					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
+					class="rounded-lg p-2 text-white transition-colors hover:bg-warm-500"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
@@ -108,7 +108,7 @@
 				<a
 					href="https://www.youtube.com/channel/UChzdujpm-327KAI4XqErKUg"
 					aria-label="Volg ons op YouTube"
-					class="rounded-lg p-2 text-warm-200 transition-colors hover:bg-warm-500 hover:text-white"
+					class="rounded-lg p-2 text-white transition-colors hover:bg-warm-500"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 						<path
