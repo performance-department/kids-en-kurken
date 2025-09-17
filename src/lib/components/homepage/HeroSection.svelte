@@ -32,7 +32,7 @@
 			<!-- Section Header -->
 			<div class="mb-8 flex items-center gap-3">
 				<StarIcon size={32} class="text-neutral-700" />
-				<h2 class="text-3xl font-bold text-neutral-900">Uitgelicht</h2>
+				<h2 class="text-3xl font-bold text-neutral-900">Nieuw</h2>
 			</div>
 			<div class="grid gap-8 lg:grid-cols-3">
 				<!-- Main Featured Post -->
