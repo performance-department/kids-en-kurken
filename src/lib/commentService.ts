@@ -1,5 +1,5 @@
 import { client } from '$lib/sanity';
-import { writeClient } from '$lib/sanity.server';
+import { writeClient } from '$lib/server/sanity';
 import { z } from 'zod';
 
 // Validation schemas

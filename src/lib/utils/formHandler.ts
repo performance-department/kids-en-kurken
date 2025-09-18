@@ -1,4 +1,4 @@
-import { writeClient } from '$lib/sanity.server';
+import { writeClient } from '$lib/server/sanity';
 import { z, type ZodSchema } from 'zod';
 import { fail } from '@sveltejs/kit';
 import type { RequestEvent, Action } from '@sveltejs/kit';
