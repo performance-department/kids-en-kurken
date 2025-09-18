@@ -84,10 +84,10 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 	// Set browser cache headers
 	// 10min browser, 1hr CDN
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=600, s-maxage=3600',
-	// 	vary: 'Accept-Encoding'
-	// });
+	setHeaders({
+		'cache-control': 'public, max-age=600, s-maxage=3600',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		posts: data.posts,
