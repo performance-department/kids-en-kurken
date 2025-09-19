@@ -102,10 +102,11 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	}
 
 	// Set browser cache headers with query parameter variation
-	setHeaders({
-		'cache-control': 'public, max-age=60, s-maxage=300', // 1min browser, 5min CDN
-		vary: 'Accept-Encoding'
-	});
+	// 1min browser, 5min CDN
+	// setHeaders({
+	// 	'cache-control': 'public, max-age=60, s-maxage=300',
+	// 	vary: 'Accept-Encoding'
+	// });
 
 	return {
 		posts: data.posts,

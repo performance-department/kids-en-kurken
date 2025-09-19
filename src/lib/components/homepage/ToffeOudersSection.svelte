@@ -40,7 +40,7 @@
 
 			<!-- Posts Horizontal Scroll -->
 			<div class="scrollbar-hide flex gap-6 overflow-x-auto pb-4">
-				{#each posts as post}
+				{#each posts as post (post._id)}
 					<article class="group h-full w-80 flex-shrink-0 cursor-pointer">
 						<a href={formatPermalink(post.date, post.slug.current)} class="block h-full">
 							<div

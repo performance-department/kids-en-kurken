@@ -118,10 +118,11 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	}
 
 	// Set browser cache headers
-	setHeaders({
-		'cache-control': 'public, max-age=300, s-maxage=3600', // 5min browser, 1hr CDN
-		vary: 'Accept-Encoding'
-	});
+	// // 5min browser, 1hr CDN
+	// setHeaders({
+	// 	'cache-control': 'public, max-age=300, s-maxage=3600',
+	// 	vary: 'Accept-Encoding'
+	// });
 
 	const { commentBuckets, ...post } = result;
 
