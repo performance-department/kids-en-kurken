@@ -77,7 +77,7 @@ export const menuItems = [
 ];
 
 export const footerLinks = [
-	{ name: 'Adverteren', href: '#' },
+	{ name: 'Adverteren', href: '/adverteren' },
 	{ name: 'Voorwaarden', href: '/voorwaarden' },
 	{ name: 'Disclaimer', href: '/disclaimer' },
 	{ name: 'Huisregels', href: '/huisregels' },
