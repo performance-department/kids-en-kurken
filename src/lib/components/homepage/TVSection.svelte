@@ -78,7 +78,6 @@
 												: 'https://placehold.co/400x225/333/fff?text=Video'}
 											alt={post.title}
 											class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-											style={`view-transition-name:${post._id}`}
 										/>
 										<div class="absolute inset-0 bg-black/20"></div>
 									</div>

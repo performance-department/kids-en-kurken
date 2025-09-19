@@ -76,7 +76,6 @@
 												: 'https://placehold.co/320x200?text=Kids en Kurken'}
 											alt={post.title}
 											class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-											style={`view-transition-name:${post._id}`}
 										/>
 									</div>
 								</div>
