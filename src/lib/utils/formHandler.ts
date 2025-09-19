@@ -31,9 +31,10 @@ export function createFormAction<T extends Record<string, unknown>>(config: Form
 				throw new Error('Spam detected');
 			}
 
-			// Remove honeypot field from data before saving
+			// Remove honeypot and terms fields from data before saving
 			const cleanedData = { ...parsed };
 			delete cleanedData[honeypotField];
+			delete cleanedData.terms;
 
 			// Create the document in Sanity
 			await writeClient.create({
