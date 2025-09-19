@@ -82,3 +82,19 @@ export const contactSchema = z.object({
 	message: z.string().min(1, 'Message is required').max(5000, 'Message too long'),
 	website: z.string().optional()
 });
+
+export const submissionSchema = z.object({
+	name: z.string().min(1, 'Naam is verplicht').max(100, 'Naam te lang'),
+	email: z.string().email('Geldig e-mailadres is verplicht'),
+	instagram: z.string().min(1, 'Instagramnaam is verplicht').max(100, 'Instagramnaam te lang'),
+	message: z.string().min(1, 'Boodschap is verplicht').max(5000, 'Boodschap te lang'),
+	withName: z
+		.string()
+		.optional()
+		.transform((val) => val === 'true'),
+	terms: z
+		.string()
+		.optional()
+		.refine((val) => val === 'true', 'Je moet akkoord gaan met de voorwaarden'),
+	honeypot: z.string().optional()
+});
