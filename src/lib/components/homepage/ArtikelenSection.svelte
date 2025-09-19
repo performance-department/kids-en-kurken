@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import { formatPermalink } from '$lib/utils/date';
-	import SectionHeader from '../SectionHeader.svelte';
+	import { StarIcon } from '$lib';
 	import type { PostListItem } from '$lib/types/components';
 
 	interface Props {
@@ -14,9 +14,14 @@
 </script>
 
 {#if posts.length > 0}
-	<section class="mb-16 bg-neutral-50 py-16">
+	<section class="mb-16 bg-gradient-to-br from-neutral-50 to-neutral-100 py-16">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<SectionHeader {title} {viewAllLink} />
+			<div class="mb-8 flex items-center gap-3">
+				<StarIcon size={32} class="text-warm-600" />
+				<a href={viewAllLink} class="transition-colors hover:text-warm-600">
+					<h2 class="text-3xl font-bold text-neutral-900">{title}</h2>
+				</a>
+			</div>
 
 			<!-- Posts Grid -->
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

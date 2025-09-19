@@ -29,28 +29,13 @@
 	<section class="mb-16">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<!-- Section Header -->
-			<div class="mb-8 flex items-center justify-between">
-				<div>
-					<div class="flex items-center gap-3">
-						<StarIcon size={32} class="text-warm-600" />
+			<div class="mb-8">
+				<div class="flex items-center gap-3">
+					<StarIcon size={32} class="text-warm-600" />
+					<a href={viewAllLink} class="transition-colors hover:text-warm-700">
 						<h2 class="text-3xl font-bold text-neutral-900">{title}</h2>
-					</div>
-					<p class="text-neutral-600">Ontdek inspirerende ouders in onze community</p>
+					</a>
 				</div>
-				<a
-					href={viewAllLink}
-					class="hidden items-center gap-2 rounded-full border-2 border-warm-200 px-6 py-3 font-medium text-warm-700 transition-all hover:bg-warm-100 sm:flex"
-				>
-					Bekijk alles
-					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				</a>
 			</div>
 
 			<!-- Posts Horizontal Scroll -->
@@ -93,24 +78,6 @@
 						</a>
 					</article>
 				{/each}
-			</div>
-
-			<!-- Mobile View All Button -->
-			<div class="mt-6 text-center sm:hidden">
-				<a
-					href={viewAllLink}
-					class="inline-flex items-center gap-2 rounded-full bg-warm-200 px-6 py-3 font-medium text-warm-800"
-				>
-					Bekijk alles
-					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				</a>
 			</div>
 		</div>
 	</section>

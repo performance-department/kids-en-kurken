@@ -35,11 +35,11 @@
 
 <Ad size="small" />
 
-<!-- Toffe Ouders Section -->
-<ToffeOudersSection posts={data.toffeOuders} title="Toffe Ouders" viewAllLink="/toffe-ouders" />
-
 <!-- Artikelen Section -->
 <ArtikelenSection posts={data.artikelen} title="Artikelen" viewAllLink="/artikelen" />
+
+<!-- Toffe Ouders Section -->
+<ToffeOudersSection posts={data.toffeOuders} title="Toffe Ouders" viewAllLink="/toffe-ouders" />
 
 <!-- TV Section -->
 <TVSection posts={data.tv} title="TV" viewAllLink="/tv" />
