@@ -48,7 +48,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders }) => {
 
 	// Calculate the start and end indices for the GROQ query
 	const start = (page - 1) * pageSize;
-	const end = start + pageSize - 1;
+	const end = start + pageSize;
 
 	// First, let's get the author and see what we get
 	const authorQuery = `*[_type == "author" && slug.current == $slug][0]`;

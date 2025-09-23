@@ -36,7 +36,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 	// Calculate the start and end indices for the GROQ query
 	const start = (page - 1) * pageSize;
-	const end = start + pageSize - 1;
+	const end = start + pageSize;
 
 	const groqQuery = `
     {
