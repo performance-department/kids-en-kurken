@@ -82,12 +82,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		throw error(404, 'Page not found');
 	}
 
-	// Set browser cache headers
-	// 10min browser, 1hr CDN
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=600, s-maxage=3600',
-	// 	vary: 'Accept-Encoding'
-	// });
+	// Cache for 3 hours in browser, 6 hours on Cloudflare CDN
+	// Archive pages are less time-sensitive than homepage
+	setHeaders({
+		'cache-control': 'public, max-age=10800, s-maxage=21600',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		posts: data.posts,

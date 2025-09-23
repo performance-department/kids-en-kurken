@@ -156,12 +156,10 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 		tv: PostListItem[];
 	}>(groqQuery);
 
-	// Set browser cache headers
-	// 5min browser, 30min CDN
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=300, s-maxage=1800',
-	// 	vary: 'Accept-Encoding'
-	// });
+	setHeaders({
+		'cache-control': 'public, max-age=7200, s-maxage=10800',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		nieuw: data.nieuw || [],

@@ -101,12 +101,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		throw error(404, 'Page not found');
 	}
 
-	// Set browser cache headers with query parameter variation
-	// 1min browser, 5min CDN
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=60, s-maxage=300',
-	// 	vary: 'Accept-Encoding'
-	// });
+	// Very short cache for search results since they depend on query parameters
+	// 5min browser, 15min CDN to balance performance with dynamic content
+	setHeaders({
+		'cache-control': 'public, max-age=300, s-maxage=900',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		posts: data.posts,

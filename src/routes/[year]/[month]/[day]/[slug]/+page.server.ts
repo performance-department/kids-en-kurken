@@ -117,12 +117,12 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		error(404, 'Post not found');
 	}
 
-	// Set browser cache headers
-	// // 5min browser, 1hr CDN
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=300, s-maxage=3600',
-	// 	vary: 'Accept-Encoding'
-	// });
+	// Cache for 1 hour in browser, 4 hours on Cloudflare CDN
+	// Shorter cache times ensure new comments are visible reasonably quickly
+	setHeaders({
+		'cache-control': 'public, max-age=3600, s-maxage=14400',
+		vary: 'Accept-Encoding'
+	});
 
 	const { commentBuckets, ...post } = result;
 

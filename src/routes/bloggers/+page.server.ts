@@ -24,11 +24,12 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 
 	const authors = await client.fetch<AuthorListItem[]>(groqQuery);
 
-	// Set browser cache headers
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=600, s-maxage=3600',
-	// 	vary: 'Accept-Encoding'
-	// });
+	// Cache for 6 hours in browser, 12 hours on Cloudflare CDN
+	// Author list is relatively static, changes infrequently
+	setHeaders({
+		'cache-control': 'public, max-age=21600, s-maxage=43200',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		authors
