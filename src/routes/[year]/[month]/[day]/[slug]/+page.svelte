@@ -145,7 +145,9 @@
 			<span class="hidden sm:inline">•</span>
 			<span>{post.estimatedReadingTime} min lezen</span>
 			<span class="hidden sm:inline">•</span>
-			<a href="#reacties" class="transition-colors hover:text-warm-500">{commentCount} reacties</a>
+			<a href="#reacties" class="transition-colors hover:text-warm-500"
+				>{commentCount} {commentCount === 1 ? 'reactie' : 'reacties'}</a
+			>
 		</div>
 	</div>
 
