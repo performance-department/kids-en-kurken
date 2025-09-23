@@ -25,7 +25,9 @@
 <!-- Hero Section with Latest Posts -->
 <HeroSection posts={data.nieuw} />
 
-<Ad />
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+	<Ad />
+</div>
 
 <!-- Blogs Section -->
 <BlogsSection posts={data.blogs} title="Blogs" viewAllLink="/blogs" />
@@ -33,7 +35,9 @@
 <!-- Verhalen Section -->
 <VerhalenSection posts={data.verhalen} title="Verhalen" viewAllLink="/ouderverhalen" />
 
-<Ad size="small" />
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+	<Ad size="small" />
+</div>
 
 <!-- Artikelen Section -->
 <ArtikelenSection posts={data.artikelen} title="Artikelen" viewAllLink="/artikelen" />
@@ -44,4 +48,6 @@
 <!-- TV Section -->
 <TVSection posts={data.tv} title="TV" viewAllLink="/tv" />
 
-<Ad size="large" />
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+	<Ad size="large" />
+</div>
