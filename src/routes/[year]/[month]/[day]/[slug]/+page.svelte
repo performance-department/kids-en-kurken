@@ -88,11 +88,32 @@
 	}
 
 	const breadcrumbItems = [{ label: 'Home', href: '/' }, { label: post.title }];
+
+	// Generate Article structured data (only Google-supported properties)
+	const articleSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.title,
+		datePublished: post.date,
+		dateModified: post.date,
+		author: {
+			'@type': 'Organization',
+			name: 'Kids en Kurken Redactie'
+		},
+		...(post.featuredMedia && {
+			image: [
+				urlFor(post.featuredMedia).width(1200).height(630).auto('format').url(),
+				urlFor(post.featuredMedia).width(800).height(600).auto('format').url(),
+				urlFor(post.featuredMedia).width(400).height(300).auto('format').url()
+			]
+		})
+	};
 </script>
 
 <svelte:head>
 	<title>{post.title}</title>
 	<meta name="description" content={metaDescription} />
+	{@html `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>`}
 </svelte:head>
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
