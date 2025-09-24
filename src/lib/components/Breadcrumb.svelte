@@ -13,7 +13,9 @@
 			'@type': 'ListItem',
 			position: index + 1,
 			name: item.label,
-			...(item.href && { item: item.href })
+			...(item.href && {
+				item: item.href.startsWith('http') ? item.href : `https://www.kidsenkurken.nl${item.href}`
+			})
 		}))
 	};
 </script>
