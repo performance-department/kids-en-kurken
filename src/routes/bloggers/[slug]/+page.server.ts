@@ -99,10 +99,10 @@ export const load: PageServerLoad = async ({ params, url, setHeaders }) => {
 	}
 
 	// Set browser cache headers
-	// setHeaders({
-	// 	'cache-control': 'public, max-age=600, s-maxage=3600',
-	// 	vary: 'Accept-Encoding'
-	// });
+	setHeaders({
+		'cache-control': 'public, max-age=60, s-maxage=60',
+		vary: 'Accept-Encoding'
+	});
 
 	return {
 		author: author,

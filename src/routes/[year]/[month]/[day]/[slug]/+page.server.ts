@@ -120,7 +120,7 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	// Cache for 1 hour in browser, 4 hours on Cloudflare CDN
 	// Shorter cache times ensure new comments are visible reasonably quickly
 	setHeaders({
-		'cache-control': 'public, max-age=3600, s-maxage=14400',
+		'cache-control': 'public, max-age=60, s-maxage=60',
 		vary: 'Accept-Encoding'
 	});
 

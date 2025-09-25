@@ -77,7 +77,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	// Cache for 3 hours in browser, 6 hours on Cloudflare CDN
 	// Instagram posts page behaves like a category page
 	setHeaders({
-		'cache-control': 'public, max-age=10800, s-maxage=21600',
+		'cache-control': 'public, max-age=60, s-maxage=60',
 		vary: 'Accept-Encoding'
 	});
 

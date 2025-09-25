@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	// Cache for 6 hours in browser, 12 hours on Cloudflare CDN
 	// Author list is relatively static, changes infrequently
 	setHeaders({
-		'cache-control': 'public, max-age=21600, s-maxage=43200',
+		'cache-control': 'public, max-age=60, s-maxage=60',
 		vary: 'Accept-Encoding'
 	});
 

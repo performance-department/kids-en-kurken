@@ -157,7 +157,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	}>(groqQuery);
 
 	setHeaders({
-		'cache-control': 'public, max-age=7200, s-maxage=10800',
+		'cache-control': 'public, max-age=60, s-maxage=60',
 		vary: 'Accept-Encoding'
 	});
 
