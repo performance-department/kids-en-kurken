@@ -21,6 +21,11 @@
 	const additionalPosts = $derived(posts.slice(4, 12));
 </script>
 
+<svelte:head>
+	<title>Instagram - Kids en Kurken</title>
+	<meta name="description" content="Instagram - Kids en Kurken" />
+</svelte:head>
+
 <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 	<Breadcrumb items={breadcrumbItems} />
 
