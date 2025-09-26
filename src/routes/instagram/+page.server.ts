@@ -28,7 +28,7 @@ type QueryResult = {
 };
 
 // Define how many posts to show per page
-const pageSize = 10;
+const pageSize = 12;
 
 export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	// Get the current page number from the URL, default to 1
